@@ -3,20 +3,19 @@ package model;
 public class Produto {
     
     private String nome;
-    private String categoria;
+    private Categoria categoria;
     private int quantidade;
     private double precoUnitario;
     
-    public Produto(String nome, String categoria, int quantidade, double precoUnitario) {
+    public Produto(String nome, int quantidade, double precoUnitario) {
         this.nome = nome;
-        this.categoria = categoria;
         this.quantidade = quantidade;
         this.precoUnitario = precoUnitario;
     }
     
      public Produto() {
          
-         this("", "", 0, 0.0);
+         this("", 0,0.0);
      }
 
     // Aqui vai os get e os set
@@ -27,12 +26,11 @@ public class Produto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getCategoria() {
+    
+    public Categoria getCategoria() {
         return categoria;
     }
-
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -58,6 +56,6 @@ public class Produto {
     
     @Override 
     public String toString() {
-        return nome + " | " + categoria + " | Qtd: " + quantidade + " | Preço: R$" + precoUnitario;
+        return nome + " | " +  " | Qtd: " + quantidade + " | Preço: R$" + precoUnitario;
     }
 }
