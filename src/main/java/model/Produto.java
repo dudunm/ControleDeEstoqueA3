@@ -2,6 +2,7 @@ package model;
 
 public class Produto {
     
+    private int idProduto;
     private String nome;
     private Categoria categoria;
     private int quantidade;
@@ -19,6 +20,15 @@ public class Produto {
      }
 
     // Aqui vai os get e os set
+     
+     public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+    
     public String getNome() {
         return nome;
     }
