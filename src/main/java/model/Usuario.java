@@ -43,7 +43,7 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public int getIdCliente() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
