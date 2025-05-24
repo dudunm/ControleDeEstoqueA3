@@ -39,7 +39,7 @@ public class FrmGerenciarUsuario extends javax.swing.JFrame {
         JBApagar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("📝");
+        setTitle("Gerenciamento de Usuario");
 
         JTUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JTUsuario.setModel(new javax.swing.table.DefaultTableModel(
