@@ -26,74 +26,67 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="JLCadastroProd" alignment="0" max="32767" attributes="0"/>
-                  <Component id="JLExNome" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="JLNomeProd" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTFNomeProd" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="JBCadastrar" min="-2" max="-2" attributes="0"/>
+                      <Component id="JLNomeProd" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="JBCancelar" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="JLPreco" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="284" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JLExQuant" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JTFQuantidade" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="JLQuantidade" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="JLNomeProd1" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="JTFCategoria" pref="324" max="32767" attributes="0"/>
+                          <Component id="JTFNomeProd" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="JTFPreco" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="JLExPreco" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="JLPreco" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="JLQuantidade" min="-2" max="-2" attributes="0"/>
+                          <Component id="JTFQuantidade" pref="170" max="32767" attributes="0"/>
+                          <Component id="JTFPreco" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
+              <Component id="JBCancelar" min="-2" pref="169" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+              <Component id="JBCadastrar" min="-2" pref="168" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Component id="JLCadastroProd" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="JLNomeProd" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="JTFNomeProd" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="JLExNome" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JLQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLNomeProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JLPreco" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JTFQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTFPreco" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="JTFPreco" max="32767" attributes="0"/>
+                  <Component id="JTFNomeProd" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JLExQuant" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JLExPreco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLNomeProd1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="JTFQuantidade" max="32767" attributes="0"/>
+                  <Component id="JTFCategoria" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JBCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JBCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBCancelar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="JBCadastrar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,14 +114,6 @@
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nome:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="JLExNome">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="2"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Exemplo: Ma&#xe7;arico de plasma "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="JBCadastrar">
@@ -159,14 +144,9 @@
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="JLCadastroProd">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="32" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Cadastro de Produto"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFNomeProdActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="JTFQuantidade">
       <Properties>
@@ -182,21 +162,23 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="JLExQuant">
+    <Component class="javax.swing.JLabel" name="JLNomeProd1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="2"/>
+          <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Exemplo: 9 ma&#xe7;aricos"/>
+        <Property name="text" type="java.lang.String" value="Categoria:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="JLExPreco">
+    <Component class="javax.swing.JTextField" name="JTFCategoria">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="2"/>
+          <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Exemplo: 35 reais cada"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFCategoriaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

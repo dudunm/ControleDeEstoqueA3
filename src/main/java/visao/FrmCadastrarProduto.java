@@ -29,15 +29,13 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
         JLQuantidade = new javax.swing.JLabel();
         JLPreco = new javax.swing.JLabel();
         JLNomeProd = new javax.swing.JLabel();
-        JLExNome = new javax.swing.JLabel();
         JBCadastrar = new javax.swing.JButton();
         JBCancelar = new javax.swing.JButton();
         JTFNomeProd = new javax.swing.JTextField();
-        JLCadastroProd = new javax.swing.JLabel();
         JTFQuantidade = new javax.swing.JTextField();
         JTFPreco = new javax.swing.JTextField();
-        JLExQuant = new javax.swing.JLabel();
-        JLExPreco = new javax.swing.JLabel();
+        JLNomeProd1 = new javax.swing.JLabel();
+        JTFCategoria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Produto");
@@ -50,9 +48,6 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
 
         JLNomeProd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JLNomeProd.setText("Nome:");
-
-        JLExNome.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        JLExNome.setText("Exemplo: Maçarico de plasma ");
 
         JBCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBCadastrar.setText("Cadastrar");
@@ -71,19 +66,25 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
         });
 
         JTFNomeProd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        JLCadastroProd.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
-        JLCadastroProd.setText("Cadastro de Produto");
+        JTFNomeProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFNomeProdActionPerformed(evt);
+            }
+        });
 
         JTFQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         JTFPreco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        JLExQuant.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        JLExQuant.setText("Exemplo: 9 maçaricos");
+        JLNomeProd1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JLNomeProd1.setText("Categoria:");
 
-        JLExPreco.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        JLExPreco.setText("Exemplo: 35 reais cada");
+        JTFCategoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        JTFCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFCategoriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,60 +92,54 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JLCadastroProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JLExNome)
-                    .addComponent(JLNomeProd)
-                    .addComponent(JTFNomeProd)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(JLNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JLPreco)
+                        .addGap(284, 284, 284))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JBCadastrar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JLNomeProd1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTFCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                            .addComponent(JTFNomeProd))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLExQuant)
-                            .addComponent(JTFQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(JLQuantidade)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JLExPreco, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(JLPreco)
-                                .addGap(37, 37, 37)))))
-                .addGap(80, 80, 80))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JLQuantidade)
+                            .addComponent(JTFQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(JTFPreco))
+                        .addGap(167, 167, 167))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(225, 225, 225)
+                .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(JBCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(JLCadastroProd)
-                .addGap(18, 18, 18)
-                .addComponent(JLNomeProd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTFNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLExNome)
-                .addGap(20, 20, 20)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLQuantidade)
+                    .addComponent(JLNomeProd)
                     .addComponent(JLPreco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JTFPreco)
+                    .addComponent(JTFNomeProd))
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTFQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTFPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(JLNomeProd1)
+                    .addComponent(JLQuantidade))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JTFQuantidade)
+                    .addComponent(JTFCategoria))
+                .addGap(144, 144, 144)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLExQuant)
-                    .addComponent(JLExPreco))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBCadastrar)
-                    .addComponent(JBCancelar))
-                .addGap(60, 60, 60))
+                    .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -157,6 +152,14 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
+
+    private void JTFNomeProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeProdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFNomeProdActionPerformed
+
+    private void JTFCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,13 +199,11 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBCancelar;
-    private javax.swing.JLabel JLCadastroProd;
-    private javax.swing.JLabel JLExNome;
-    private javax.swing.JLabel JLExPreco;
-    private javax.swing.JLabel JLExQuant;
     private javax.swing.JLabel JLNomeProd;
+    private javax.swing.JLabel JLNomeProd1;
     private javax.swing.JLabel JLPreco;
     private javax.swing.JLabel JLQuantidade;
+    private javax.swing.JTextField JTFCategoria;
     private javax.swing.JTextField JTFNomeProd;
     private javax.swing.JTextField JTFPreco;
     private javax.swing.JTextField JTFQuantidade;
