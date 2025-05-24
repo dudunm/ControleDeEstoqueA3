@@ -54,11 +54,6 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
 
         JBCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBCadastrar.setText("Cadastrar");
-        JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBCadastrarActionPerformed(evt);
-            }
-        });
 
         JBCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBCancelar.setText("Cancelar");
@@ -127,29 +122,6 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
-        try {
-            String nome = "";
-            String email = "";
-            String cpf = "";
-     
-            if (this.JTFNomeUser.getText().length() < 2) {
-                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
-            } else {
-                nome = this.JTFNomeUser.getText();
-            }
-            if (!this.JTFEmail.getText().contains("@")) {
-                throw new Mensagem("Endereço de e-mail inválido.");
-            } else {
-                email = this.JTFEmail.getText();
-            }
-            if (this.JTFCPF.getText().length() < 10) {
-                throw new Mensagem("CPF inválido.");
-            } else {
-                cpf = this.JTFCPF.getText();
-            }
-    }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
