@@ -18,12 +18,8 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
         JTFCPF = new javax.swing.JTextField();
         JLEmail = new javax.swing.JLabel();
         JLCPF = new javax.swing.JLabel();
-        JLExCPF = new javax.swing.JLabel();
-        JLExEmail = new javax.swing.JLabel();
-        JLExNome = new javax.swing.JLabel();
         JBCadastrar = new javax.swing.JButton();
         JBCancelar = new javax.swing.JButton();
-        JLCadastroUser = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Usuário");
@@ -43,15 +39,6 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
         JLCPF.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JLCPF.setText("CPF:");
 
-        JLExCPF.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        JLExCPF.setText("Exemplo: 123.456.789-01");
-
-        JLExEmail.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        JLExEmail.setText("Exemplo: mainjaxafundado@outlook.com");
-
-        JLExNome.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        JLExNome.setText("Exemplo: Pedro Mascarenhas");
-
         JBCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBCadastrar.setText("Cadastrar");
 
@@ -63,61 +50,49 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
             }
         });
 
-        JLCadastroUser.setFont(new java.awt.Font("Segoe UI", 0, 32)); // NOI18N
-        JLCadastroUser.setText("Cadastro de Usuário");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JTFNomeUser)
+                    .addComponent(JTFEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLNomeUser)
+                    .addComponent(JLEmail))
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JBCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(JTFCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(JLCadastroUser, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                        .addComponent(JTFNomeUser)
-                        .addComponent(JTFEmail)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(JBCadastrar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(JLExNome)
-                        .addComponent(JLExEmail)
-                        .addComponent(JLNomeUser)
-                        .addComponent(JLEmail)
-                        .addComponent(JLCPF)
-                        .addComponent(JLExCPF)))
-                .addGap(80, 80, 80))
+                    .addComponent(JLCPF))
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(JLCadastroUser)
-                .addGap(18, 18, 18)
-                .addComponent(JLNomeUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTFNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLExNome)
-                .addGap(20, 20, 20)
+                .addGap(110, 110, 110)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JLNomeUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTFNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JLCPF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTFCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(57, 57, 57)
                 .addComponent(JLEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTFEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLExEmail)
-                .addGap(20, 20, 20)
-                .addComponent(JLCPF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTFCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLExCPF)
-                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBCancelar)
-                    .addComponent(JBCadastrar))
-                .addGap(60, 60, 60))
+                    .addComponent(JTFEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JBCancelar)
+                        .addComponent(JBCadastrar)))
+                .addGap(131, 131, 131))
         );
 
         pack();
@@ -166,11 +141,7 @@ public class FrmCadastrarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBCancelar;
     private javax.swing.JLabel JLCPF;
-    private javax.swing.JLabel JLCadastroUser;
     private javax.swing.JLabel JLEmail;
-    private javax.swing.JLabel JLExCPF;
-    private javax.swing.JLabel JLExEmail;
-    private javax.swing.JLabel JLExNome;
     private javax.swing.JLabel JLNomeUser;
     private javax.swing.JTextField JTFCPF;
     private javax.swing.JTextField JTFEmail;
