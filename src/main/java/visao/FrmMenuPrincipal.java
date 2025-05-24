@@ -42,6 +42,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         setTitle("Menu Controle de Estoque");
 
         jMenuArquivo.setText("Arquivo");
+        jMenuArquivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuArquivoActionPerformed(evt);
+            }
+        });
 
         jMenuItemCadastrarUsuario.setText("Cadastrar Usuario");
         jMenuItemCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -52,12 +57,27 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuArquivo.add(jMenuItemCadastrarUsuario);
 
         jMenuItemGerenciarUsuario.setText("Gerenciar Usuario");
+        jMenuItemGerenciarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGerenciarUsuarioActionPerformed(evt);
+            }
+        });
         jMenuArquivo.add(jMenuItemGerenciarUsuario);
 
         jMenuItemCadastrarProduto.setText("Cadastrar Produto");
+        jMenuItemCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadastrarProdutoActionPerformed(evt);
+            }
+        });
         jMenuArquivo.add(jMenuItemCadastrarProduto);
 
         jMenuItemGerenciarProduto.setText("Gerenciar Produto");
+        jMenuItemGerenciarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGerenciarProdutoActionPerformed(evt);
+            }
+        });
         jMenuArquivo.add(jMenuItemGerenciarProduto);
 
         jMenuItemSair.setText("Sair");
@@ -91,12 +111,37 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarUsuarioActionPerformed
         // TODO add your handling code here:
+        FrmCadastrarUsuario objeto = new FrmCadastrarUsuario();
+        objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarUsuarioActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItemSairActionPerformed
+
+    private void jMenuArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuArquivoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuArquivoActionPerformed
+
+    private void jMenuItemGerenciarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGerenciarUsuarioActionPerformed
+        // TODO add your handling code here:
+        FrmGerenciarUsuario objeto = new FrmGerenciarUsuario();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItemGerenciarUsuarioActionPerformed
+
+    private void jMenuItemCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarProdutoActionPerformed
+        // TODO add your handling code here:
+        FrmCadastrarProduto objeto = new FrmCadastrarProduto();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCadastrarProdutoActionPerformed
+
+    private void jMenuItemGerenciarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGerenciarProdutoActionPerformed
+        // TODO add your handling code here:
+        FrmGerenciarProduto objeto = new FrmGerenciarProduto();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItemGerenciarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
