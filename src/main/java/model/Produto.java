@@ -2,6 +2,8 @@ package model;
 
 public class Produto {
     
+    // atributos da classe produto
+    
     private int idProduto;
     private String nome;
     private Categoria categoria;
@@ -19,7 +21,7 @@ public class Produto {
          this("", 0,0.0);
      }
 
-    // Aqui vai os get e os set
+    // Aqui os getters e setters
      
      public int getIdProduto() {
         return idProduto;

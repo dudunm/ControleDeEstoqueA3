@@ -50,11 +50,4 @@ public class Usuario {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-    
-    public boolean insertAlunoBD(String nome, int idade, String curso, int fase) {
-        int id = this.maiorID() + 1;
-        Usuario objeto = new Usuario(idUsuario, nome, email, cpf);
-        getMinhaLista().add(objeto);
-        return true;
-}
 }
