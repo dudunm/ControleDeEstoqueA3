@@ -40,6 +40,7 @@ public class FrmGerenciarProduto extends javax.swing.JFrame {
         JTFNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerenciamento de Produto");
 
         JTProduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JTProduto.setModel(new javax.swing.table.DefaultTableModel(

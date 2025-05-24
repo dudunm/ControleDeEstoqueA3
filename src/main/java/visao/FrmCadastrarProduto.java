@@ -40,7 +40,7 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
         JLExPreco = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("📝");
+        setTitle("Cadastro de Produto");
 
         JLQuantidade.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JLQuantidade.setText("Quantidade:");
@@ -155,7 +155,7 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     /**
