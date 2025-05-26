@@ -11,5 +11,5 @@ Sistema de Controle de Estoque desenvolvido para atender uma situação fictíci
 
 O arquivo "banco.sql" foi criado e serve para criar o banco de dados e suas tabelas.
 Para acesso ao banco de dados, utilizar o seguinte usuario e senha:
-user: root
-password: admin123
+- user: root
+- password: admin123
