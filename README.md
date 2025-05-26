@@ -8,3 +8,8 @@ Integrantes:
 - Vitor da Silva Coelho - VitorScoelho12- RA: 1072514803
 
 Sistema de Controle de Estoque desenvolvido para atender uma situação fictícia.
+
+O arquivo "banco.sql" foi criado e serve para criar o banco de dados assim como suas tabelas.
+Para acesso ao banco de dados, utilizar o seguinte usuario e senha:
+user: root
+password: admin123
