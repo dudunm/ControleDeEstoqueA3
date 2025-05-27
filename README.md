@@ -1,14 +1,14 @@
 # ControleDeEstoqueA3
 
 Projeto de sistema de Controle de Estoque desenvolvido para atender uma
-sitiação fictícia, em JAVA-MVC com MAVEN.
+situação fictícia, em JAVA-MVC com MAVEN.
 
 ## Descrição
 
 O sistema de Controle de Estoque é desenvolvido para facilitar no controle,
 organização e categorização de um estoque. O sistema permite registrar e 
- gerenciar os produtos, os úsuarios do sistema e fornece relátorios úteis
- para análise.
+gerenciar os produtos, os úsuarios do sistema e fornece relatórios úteis
+para análise.
 
  # Integrantes
 
@@ -23,16 +23,16 @@ organização e categorização de um estoque. O sistema permite registrar e
 1. Funcionalidade 1 : CRUD Produtos
 
    Permite adicionar novos produtos ao sistema, incluindo suas informações, nome,
-   categoria, quantidade e preço unitário. Atualizar informações e apagar produtos.
+   categoria, quantidade e preço unitário. Também permite atualizar informações e apagar produtos.
 
 2. Funcionalidade 2 : CRUD Usuários
 
    Permite adicionar novos usuários ao sistema, incluindo suas informações, nome,
-   e-mail e CPF. Atualizar informações e apagar usuários.
+   e-mail e CPF. Também permite atualizar informações e apagar usuários.
 
 3. Funcionalidade 3 : CRUD Categorias
 
-   Permite adicionar novas categorias ao sistema, incluindo suas informações como nome e tipo. Atualizar informações e apagar categorias.
+   Permite adicionar novas categorias ao sistema, incluindo suas informações como nome e tipo. Também permite atualizar informações e apagar categorias.
 
 # BancoDeDados
 
