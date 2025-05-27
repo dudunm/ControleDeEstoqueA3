@@ -27,8 +27,12 @@ organização e categorização de um estoque. O sistema permite registrar e
 
 2. Funcionalidade 2 : CRUD Usuários
 
-   Permite adicionar novos usuários ao sitema, incluindo suas informações, nome,
+   Permite adicionar novos usuários ao sistema, incluindo suas informações, nome,
    e-mail e CPF. Atualizar informações e apagar usuários.
+
+3. Funcionalidade 3 : CRUD Categorias
+
+   Permite adicionar novas categorias ao sistema, incluindo suas informações como nome e tipo. Atualizar informações e apagar categorias.
 
 # BancoDeDados
 
