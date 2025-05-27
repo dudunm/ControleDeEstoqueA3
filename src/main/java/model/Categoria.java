@@ -4,14 +4,16 @@ public class Categoria {
 
     private int idCategoria;
     private String nome;
+    private String tipo;
 
     public Categoria() {
-        this(0,"");
+        this(0, "", "");
     }
 
-    public Categoria(int idCategoria, String nome) {
+    public Categoria(int idCategoria, String nome, String tipo) {
         this.idCategoria = idCategoria;
         this.nome = nome;
+        this.tipo = tipo;
     }
 
     public int getIdCategoria() {
@@ -28,5 +30,13 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }
