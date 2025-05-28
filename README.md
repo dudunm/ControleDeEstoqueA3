@@ -34,7 +34,7 @@ para análise.
 
    Permite adicionar novas categorias ao sistema, incluindo suas informações como nome e tipo. Também permite atualizar informações e apagar categorias.
 
-# BancoDeDados
+# Banco de Dados
 
 O arquivo "banco.sql" foi criado e serve para criar o banco de dados e suas tabelas.
 
