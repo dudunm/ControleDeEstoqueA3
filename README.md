@@ -38,7 +38,7 @@ para análise.
 
 O arquivo "banco.sql" foi criado e serve para criar o banco de dados e suas tabelas.
 
-## AcessoAoBancoDeDados
+## Acesso ao banco de dados
 
 Para acesso ao banco de dados, utilizar o seguinte usuário e senha :
  - user : root
