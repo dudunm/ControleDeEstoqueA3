@@ -43,4 +43,66 @@ O arquivo "banco.sql" foi criado e serve para criar o banco de dados e suas tabe
 Para acesso ao banco de dados, utilizar o seguinte usuário e senha :
  - user : root
  - password : admin123
-   
+
+# Requisitos do sistema
+
+## Requisitos funcionais
+
+RF01. Cadastro de usuário
+ - O sistema deve permitir o cadastro de novo usuários com suas informações, nome, email e CPF.
+
+RF02. Consulta de usuário
+ - O sistema deve permitir a pesquisa e visualização dos usuários cadastrados.
+
+RF03. Cadastro de produto
+ - O sistema deve permitir cadastrar novos produtos com suas informações, nome, categoria, quantidade e preço unitário.
+
+RF04. Consulta produto
+ - O sistema deve permitir a pesquisa e visualização dos produtos cadastrados.
+
+RF05. Cadastro de categorias
+ - O sistema deve permitir cadastrar novas categorias com suas informações, nome e tipo.
+
+RF06. Atualização de usuário
+ - O sistema deve permitir editar e atualizar as informações dos usuários cadastrados.
+
+RF07. Exclusão de usuário
+ - O sistema deve permitir excluir usuários cadastrados.
+
+RF08. Atualização de produto
+ - O sistema deve permitir editar e atualizar as informações dos usuários cadastrados.
+
+RF09. Exclusão de produto
+ - O sistema deve permitir excluir produtos cadastrados.
+
+RF10. Atualização de categoria 
+ - O sistema deve permitir editar e atualizar as informações dos usuários cadastrados.
+
+RF11. Exclusão de categoria
+ - O sistema deve permitir excluir caategorias cadastradas.
+
+RF12. Controle entrada de estoque
+ - O sistema deve registrar a entrada de novos produtos no estoque.
+
+RF13. Controle de saída do estoque
+ - O sistema deve registrar a saída de produtos do estoque.
+
+RF14. Relatórios de estoque
+ - O sistema de gerar relatórios de : Produtos em estoque e entrada e saída de produtos.
+
+## Requisitos não funcionais
+
+RNF01. Desempenho
+ - O sistema deve responder as ações e solicitações do usuário da forma mais rápida possível.
+
+RNF02. Usubilidade
+ - O sistema deve ser intuitivo e fácil, pessoas com baixa experiência técnica devem conseguir usar.
+
+RNF03. Confiabilidade
+ - O sistema deve registra de forma correta todos os dados das operações (cadastro, atualizações e exclusões)
+
+RNF04. Manutenibilidade
+ - O sistema deve permitir atualizações sem perda de nenhum dado.
+
+RNF05. Disponibilidade
+ - O sistema deve funcionar 99,9% do tempo.
