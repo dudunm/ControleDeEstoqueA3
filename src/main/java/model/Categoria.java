@@ -2,28 +2,19 @@ package model;
 
 public class Categoria {
 
-    private int id;
     private String nome;
     private String tamanho;
     private String embalagem;
-    
+   
     public Categoria() {
-        this(0,"","", "");
+        this("","", "");
     }
 
-    public Categoria(int id, String nome, String tamanho, String embalagem) {
-        this.id = id;
+
+    public Categoria( String nome, String tamanho, String embalagem) {
         this.nome = nome;
         this.tamanho = tamanho;
         this.embalagem = embalagem;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setIdCategoria(int id) {
-        this.id = id;
     }
 
     public String getNome() {
