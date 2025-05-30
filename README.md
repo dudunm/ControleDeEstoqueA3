@@ -106,3 +106,10 @@ RNF04. Manutenibilidade
 
 RNF05. Disponibilidade
  - O sistema deve funcionar 99,9% do tempo.
+
+# Tecnologias
+
+ - Java developement kit(JDK)21
+ - MySQL server 17.6 GA
+ - SQL worbench 8.0.42
+ - IDE  Apache NetBeans 26
