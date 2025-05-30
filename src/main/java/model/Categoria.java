@@ -2,24 +2,28 @@ package model;
 
 public class Categoria {
 
-    private int idCategoria;
+    private int id;
     private String nome;
-
+    private String tamanho;
+    private String embalagem;
+    
     public Categoria() {
-        this(0,"");
+        this(0,"","", "");
     }
 
-    public Categoria(int idCategoria, String nome) {
-        this.idCategoria = idCategoria;
+    public Categoria(int id, String nome, String tamanho, String embalagem) {
+        this.id = id;
         this.nome = nome;
+        this.tamanho = tamanho;
+        this.embalagem = embalagem;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public int getId() {
+        return id;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setIdCategoria(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -28,5 +32,21 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public String getTamanho() {
+        return tamanho;
+    }
+    
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
+    
+    public String getEmbalagem() {
+        return embalagem;
+    }
+    
+    public void setEmbalagem(String embalagem) {
+        this.embalagem = embalagem;
     }
 }

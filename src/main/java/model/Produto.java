@@ -4,31 +4,42 @@ public class Produto {
     
     // atributos da classe produto
     
-    private int idProduto;
+    private int id;
     private String nome;
-    private Categoria categoria;
-    private int quantidade;
     private double precoUnitario;
+    private String unidade;
+    private int quantidadeEstoque;
+    private int quantidadeMinima;
+    private int quantidadeMaxima;
+    private Categoria categoria;
     
-    public Produto(String nome, int quantidade, double precoUnitario) {
+    
+    public Produto(int id, String nome, double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, Categoria categoria) {
+        
+        this.id = id;
         this.nome = nome;
-        this.quantidade = quantidade;
         this.precoUnitario = precoUnitario;
+        this.unidade = unidade;
+        this.quantidadeEstoque = quantidadeEstoque;
+        this.quantidadeMinima = quantidadeMinima;
+        this.quantidadeMaxima = quantidadeMaxima;
+        this.categoria = categoria;
+
     }
     
      public Produto() {
          
-         this("", 0,0.0);
+         this(0, "",0.0, "", 0, 0, 0, null);
      }
 
     // Aqui os getters e setters
      
-     public int getIdProduto() {
-        return idProduto;
+     public int getId() {
+        return id;
     }
 
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getNome() {
@@ -39,21 +50,6 @@ public class Produto {
         this.nome = nome;
     }
     
-    public Categoria getCategoria() {
-        return categoria;
-    }
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public double getPrecoUnitario() {
         return precoUnitario;
     }
@@ -61,13 +57,43 @@ public class Produto {
     public void setPrecoUnitario(double precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
-
-    public double calcularValorTotal() {
-        return this.quantidade * this.precoUnitario;
+    
+    public String getUnidade() {
+        return unidade;
     }
     
-    @Override 
-    public String toString() {
-        return nome + " | " +  " | Qtd: " + quantidade + " | Preço: R$" + precoUnitario;
+    public void setUnidade(String unidade) {
+        this.unidade = unidade;
+    }
+    
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+   
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+    
+    public int getQuantidadeMinima() {
+        return quantidadeMinima;
+    }
+   
+    public void setQuantidadeMinima(int quantidadeMinima) {
+        this.quantidadeMinima = quantidadeMinima;
+    }
+    
+    public int getQuantidadeMaxima() {
+        return quantidadeMaxima;
+    }
+   
+    public void setQuantidadeMaxima(int quantidadeMaxima) {
+        this.quantidadeMaxima = quantidadeMaxima;
+    }
+    
+    public Categoria getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
