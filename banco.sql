@@ -1,5 +1,7 @@
 create database estoque;
 
+use estoque;
+
 create table categoria(
 	idCategoria int not null,
     nome varchar(50),
@@ -23,3 +25,12 @@ create table clientes(
     primary key (idCliente)
 );
 
+ALTER TABLE clientes add email varchar(50);
+
+ALTER TABLE produtos add quantidadeEstoque int;
+ALTER TABLE produtos add quantidadeMinima int;
+ALTER TABLE produtos add quantidadeMaxima int;
+ALTER TABLE produtos add unidade varchar(50);
+
+alter table categoria add tamanho varchar(10);
+alter table categoria add embalagem varchar(10);
