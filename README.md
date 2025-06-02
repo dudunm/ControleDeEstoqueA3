@@ -12,7 +12,7 @@ para análise.
 
  # Integrantes
 
-- Eduardo Nienkotter Marcelino - dudunm - RA: 10725117189
+- Eduardo Nienkotter Marcelino - dudunm & dudun - RA: 10725117189
 - Júlio César Santos de Oliveira - juliolvv - RA: 10724268894
 - Leonardo Luiz Clasen - leoclasen - RA: 1072518621
 - Rafael Dutra Buchner - moggo1313 - RA: 10724271424
