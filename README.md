@@ -93,7 +93,7 @@ RNF05. Disponibilidade
 
 # Tecnologias
 
- - Java developement kit(JDK)21
+ - Java Development Kit(JDK)21
  - MySQL server 17.6 GA
- - SQL worbench 8.0.42
- - IDE  Apache NetBeans 26
+ - SQL Workbench 8.0.42
+ - IDE Apache NetBeans 26
