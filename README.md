@@ -18,22 +18,6 @@ para análise.
 - Rafael Dutra Buchner - moggo1313 - RA: 10724271424 (User local: rafae - 3 commits)
 - Vitor da Silva Coelho - VitorScoelho12- RA: 1072514803 (User local: Vitor - 1 commit)
 
-# Funcionalidades
-
-1. Funcionalidade 1 : CRUD Produtos
-
-   Permite adicionar novos produtos ao sistema, incluindo suas informações, nome,
-   categoria, quantidade e preço unitário. Também permite atualizar informações e apagar produtos.
-
-2. Funcionalidade 2 : CRUD Usuários
-
-   Permite adicionar novos usuários ao sistema, incluindo suas informações, nome,
-   e-mail e CPF. Também permite atualizar informações e apagar usuários.
-
-3. Funcionalidade 3 : CRUD Categorias
-
-   Permite adicionar novas categorias ao sistema, incluindo suas informações como nome e tipo. Também permite atualizar informações e apagar categorias.
-
 # Banco de Dados
 
 O arquivo "banco.sql" foi criado e serve para criar o banco de dados e suas tabelas.
