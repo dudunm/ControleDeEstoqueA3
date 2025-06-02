@@ -12,11 +12,11 @@ para análise.
 
  # Integrantes
 
-- Eduardo Nienkotter Marcelino - dudunm - RA: 10725117189 (Users locais: dudu, dudun - 5 commits)
-- Júlio César Santos de Oliveira - juliolvv - RA: 10724268894
-- Leonardo Luiz Clasen - leoclasen - RA: 1072518621 (User local: Leonardo - 2 commits)
-- Rafael Dutra Buchner - moggo1313 - RA: 10724271424 (User local: rafae - 3 commits)
-- Vitor da Silva Coelho - VitorScoelho12- RA: 1072514803 (User local: Vitor - 1 commit)
+- Eduardo Nienkotter Marcelino - RA: 10725117189 - Users: dudu, dudun, dudunm;
+- Júlio César Santos de Oliveira - RA: 10724268894 - User: juliolvv;
+- Leonardo Luiz Clasen - RA: 1072518621 - Users: Leonardo, leoclasen;
+- Rafael Dutra Buchner - RA: 10724271424 - Users: rafae, moggo1313;
+- Vitor da Silva Coelho - RA: 1072514803 - Users: Vitor, VitorScoelho12;
 
 # Banco de Dados
 
