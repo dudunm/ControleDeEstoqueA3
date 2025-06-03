@@ -31,6 +31,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuArquivo = new javax.swing.JMenu();
         jMenuItemCadastrarProduto = new javax.swing.JMenuItem();
         jMenuItemGerenciarProduto = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuSair = new javax.swing.JMenu();
 
@@ -61,6 +63,17 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuArquivo.add(jMenuItemGerenciarProduto);
+
+        jMenuItem3.setText("Cadastrar Categoria");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenuArquivo.add(jMenuItem3);
+
+        jMenuItem2.setText("Gerenciar Categoria");
+        jMenuArquivo.add(jMenuItem2);
 
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +126,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItemGerenciarProdutoActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -152,6 +169,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuArquivo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemCadastrarProduto;
     private javax.swing.JMenuItem jMenuItemGerenciarProduto;
     private javax.swing.JMenuItem jMenuItemSair;
