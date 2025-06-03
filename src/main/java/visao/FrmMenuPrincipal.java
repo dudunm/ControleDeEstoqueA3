@@ -29,8 +29,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuArquivo = new javax.swing.JMenu();
-        jMenuItemCadastrarUsuario = new javax.swing.JMenuItem();
-        jMenuItemGerenciarUsuario = new javax.swing.JMenuItem();
         jMenuItemCadastrarProduto = new javax.swing.JMenuItem();
         jMenuItemGerenciarProduto = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
@@ -47,22 +45,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 jMenuArquivoActionPerformed(evt);
             }
         });
-
-        jMenuItemCadastrarUsuario.setText("Cadastrar Usuario");
-        jMenuItemCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCadastrarUsuarioActionPerformed(evt);
-            }
-        });
-        jMenuArquivo.add(jMenuItemCadastrarUsuario);
-
-        jMenuItemGerenciarUsuario.setText("Gerenciar Usuario");
-        jMenuItemGerenciarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemGerenciarUsuarioActionPerformed(evt);
-            }
-        });
-        jMenuArquivo.add(jMenuItemGerenciarUsuario);
 
         jMenuItemCadastrarProduto.setText("Cadastrar Produto");
         jMenuItemCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -109,12 +91,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarUsuarioActionPerformed
-        // TODO add your handling code here:
-        FrmCadastrarUsuario objeto = new FrmCadastrarUsuario();
-        objeto.setVisible(true);
-    }//GEN-LAST:event_jMenuItemCadastrarUsuarioActionPerformed
-
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -124,12 +100,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jMenuArquivoActionPerformed
-
-    private void jMenuItemGerenciarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGerenciarUsuarioActionPerformed
-        // TODO add your handling code here:
-        FrmGerenciarUsuario objeto = new FrmGerenciarUsuario();
-        objeto.setVisible(true);
-    }//GEN-LAST:event_jMenuItemGerenciarUsuarioActionPerformed
 
     private void jMenuItemCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarProdutoActionPerformed
         // TODO add your handling code here:
@@ -183,9 +153,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemCadastrarProduto;
-    private javax.swing.JMenuItem jMenuItemCadastrarUsuario;
     private javax.swing.JMenuItem jMenuItemGerenciarProduto;
-    private javax.swing.JMenuItem jMenuItemGerenciarUsuario;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuSair;
     // End of variables declaration//GEN-END:variables
