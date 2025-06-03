@@ -4,6 +4,7 @@ public class Produto {
     
     // atributos da classe produto
     
+    private int idProduto;
     private String nome;
     private double precoUnitario;
     private String unidade;
@@ -13,8 +14,9 @@ public class Produto {
     private Categoria categoria;
     
     
-    public Produto(String nome, double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, Categoria categoria) {
+    public Produto(int idProduto, String nome, double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, Categoria categoria) {
         
+        this.idProduto = idProduto;
         this.nome = nome;
         this.precoUnitario = precoUnitario;
         this.unidade = unidade;
@@ -27,11 +29,19 @@ public class Produto {
     
      public Produto() {
          
-         this("",0.0, "", 0, 0, 0, null);
+         this(0, "",0.0, "", 0, 0, 0, null);
      }
 
     // Aqui os getters e setters
 
+     public int getIdProduto() {
+         return idProduto;
+     }
+     
+     public void setIdProduto( int idProduto) {
+         this.idProduto = idProduto;
+     }
+     
     public String getNome() {
         return nome;
     }
