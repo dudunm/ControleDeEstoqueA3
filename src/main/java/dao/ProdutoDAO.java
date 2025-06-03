@@ -12,7 +12,7 @@ import model.Categoria;
 public class ProdutoDAO {
     
     public void create(Produto p) throws SQLException {
-        String sql = "INSERT INTO produto (nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, idCategoria) " +
+        String sql = "INSERT INTO produtos (nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, idCategoria) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexaoDAO.getConnection(); 
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -30,7 +30,7 @@ public class ProdutoDAO {
     
     public List<Produto> readAll() throws SQLException {
         List<Produto> lista = new ArrayList<>();
-        String sql = "SELECT * FROM produto";
+        String sql = "SELECT * FROM produtos";
         
             try (Connection conn = ConexaoDAO.getConnection();
             Statement stmt = conn.createStatement();
@@ -63,7 +63,7 @@ public class ProdutoDAO {
         
         public void update(Produto p) throws SQLException {
             
-            String sql = "UPDATE produto SET nome=?, precoUnitario=?, unidade=?, quantidadeEstoque=?, quantidadeMinima=?, quantidadeMaxima=?, idCategoria=? WHERE idProduto=?";
+            String sql = "UPDATE produtos SET nome=?, precoUnitario=?, unidade=?, quantidadeEstoque=?, quantidadeMinima=?, quantidadeMaxima=?, idCategoria=? WHERE idProduto=?";
             
             try (Connection conn = ConexaoDAO.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -81,7 +81,7 @@ public class ProdutoDAO {
         }
         
         public void delete(int idProduto) throws SQLException {
-            String sql = "DELETE FROM produto WHERE idproduto=?";
+            String sql = "DELETE FROM produtos WHERE idproduto=?";
             try (Connection conn = ConexaoDAO.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
                     

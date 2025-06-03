@@ -73,6 +73,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuArquivo.add(jMenuItem3);
 
         jMenuItem2.setText("Gerenciar Categoria");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenuArquivo.add(jMenuItem2);
 
         jMenuItemSair.setText("Sair");
@@ -127,8 +132,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemGerenciarProdutoActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        FrmCadastrarCategoria objeto = new FrmCadastrarCategoria();
+        objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FrmGerenciarCategoria objeto = new FrmGerenciarCategoria();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

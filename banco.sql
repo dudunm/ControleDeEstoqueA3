@@ -1,36 +1,22 @@
-create database estoque;
-
-use estoque;
-
-create table categoria(
-	idCategoria int not null,
-    nome varchar(50),
-    primary key (nome)
+CREATE TABLE categoria(
+    idCategoria INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(58),
+    tamanho VARCHAR(10),
+    embalagem VARCHAR(10),
+    PRIMARY KEY (idCategoria)
 );
 
-create table produtos(
-	idProduto int not null auto_increment,
-    nome varchar(50),
-    categoria varchar(50),
-    quantidade int,
-    precoUnitario double,
-    primary key (idProduto),
-    foreign key (categoria) references categoria(nome) 
+CREATE TABLE produtos(
+    idProduto INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(58),
+    precoUnitario DOUBLE,
+    unidade VARCHAR(58),
+    quantidadeEstoque INT,
+    quantidadeMinima INT,
+    quantidadeMaxima INT,
+    idCategoria INT,
+    PRIMARY KEY (idProduto),
+    FOREIGN KEY (idCategoria) REFERENCES categoria(idCategoria)
 );
 
-create table clientes(
-	idCliente int not null auto_increment,
-    nome varchar(50),
-    cpf varchar(14),
-    primary key (idCliente)
-);
-
-ALTER TABLE clientes add email varchar(50);
-
-ALTER TABLE produtos add quantidadeEstoque int;
-ALTER TABLE produtos add quantidadeMinima int;
-ALTER TABLE produtos add quantidadeMaxima int;
-ALTER TABLE produtos add unidade varchar(50);
-
-alter table categoria add tamanho varchar(10);
-alter table categoria add embalagem varchar(10);
+select * from categoria;

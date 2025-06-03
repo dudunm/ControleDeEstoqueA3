@@ -1,19 +1,24 @@
 package model;
 
+import java.sql.SQLException;
+import dao.CategoriaDAO;
+import java.util.ArrayList;
+
 public class Categoria {
 
     private int idCategoria;
     private String nome;
     private String tamanho;
     private String embalagem;
-   
-    public Categoria() {
-        this(0, "","", "");
+    
+    private final CategoriaDAO dao;
+    
+    public Categoria(){
+        this.dao = new CategoriaDAO();
     }
 
-
     public Categoria( int idCategoria, String nome, String tamanho, String embalagem) {
-        
+        this.dao = new CategoriaDAO();
         this.idCategoria = idCategoria;
         this.nome = nome;
         this.tamanho = tamanho;
@@ -50,5 +55,20 @@ public class Categoria {
     
     public void setEmbalagem(String embalagem) {
         this.embalagem = embalagem;
+    }
+    
+    public int maiorID() throws SQLException{
+        return dao.pegarMaiorID();
+    }
+    
+    public ArrayList pegarLista(){
+        return dao.getMinhaLista();
+    }
+    
+    public boolean insertCategoria(String nome, String tamanho, String embalagem) throws SQLException{
+        int idCategoria = this.maiorID()+1;
+        Categoria objeto = new Categoria(idCategoria, nome, tamanho, embalagem);
+        dao.create(objeto);
+        return true;
     }
 }

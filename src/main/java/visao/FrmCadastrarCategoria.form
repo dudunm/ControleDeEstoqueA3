@@ -47,10 +47,12 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JTFTipoCategoria" min="-2" pref="341" max="-2" attributes="0"/>
-                          <Component id="JLNomeProd1" min="-2" pref="56" max="-2" attributes="0"/>
-                          <Component id="JTFNomeCategoria" alignment="0" min="-2" pref="339" max="-2" attributes="0"/>
+                          <Component id="JTFEmbalagem" min="-2" pref="341" max="-2" attributes="0"/>
+                          <Component id="JTFTamanho" alignment="0" min="-2" pref="339" max="-2" attributes="0"/>
                           <Component id="JLNomeProd2" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="JLNomeProd1" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="JTFNomeCategoria1" alignment="0" min="-2" pref="339" max="-2" attributes="0"/>
+                          <Component id="JLNomeProd3" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
@@ -69,12 +71,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
               <Component id="JLNomeProd1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="JTFNomeCategoria1" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Component id="JLNomeProd3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="JTFNomeCategoria" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+              <Component id="JTFTamanho" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="JLNomeProd2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="JTFTipoCategoria" min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="JTFEmbalagem" min="-2" pref="32" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JBCadastrarCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -99,15 +105,18 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tipo de categoria:"/>
+        <Property name="text" type="java.lang.String" value="Embalagem:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="JTFNomeCategoria">
+    <Component class="javax.swing.JTextField" name="JTFTamanho">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFNomeCategoriaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFTamanhoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="JTFTipoCategoria">
+    <Component class="javax.swing.JTextField" name="JTFEmbalagem">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFEmbalagemActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBCadastrarCategoria">
       <Properties>
@@ -116,6 +125,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBCadastrarCategoriaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBCancelarCategoria">
       <Properties>
@@ -127,6 +139,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBCancelarCategoriaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="JTFNomeCategoria1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFNomeCategoria1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JLNomeProd3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tamanho:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

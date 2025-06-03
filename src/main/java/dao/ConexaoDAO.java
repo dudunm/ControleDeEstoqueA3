@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConexaoDAO {
     
-    private static final String URL = "jdbc : jdbc :mysql://localhost:3306/estoque";
+    private static final String URL = "jdbc:mysql://localhost:3306/estoque";
     private static final String USER = "root";
     private static final String PASSWORD = "admin123";
     

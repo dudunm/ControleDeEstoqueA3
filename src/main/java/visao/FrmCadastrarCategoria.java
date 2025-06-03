@@ -4,18 +4,22 @@
  */
 package visao;
 
+import java.awt.HeadlessException;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import model.Categoria;
+
 /**
  *
  * @author Leonardo
  */
 public class FrmCadastrarCategoria extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FrmCadastrarCategoria
-     */
+    
     public FrmCadastrarCategoria() {
         initComponents();
     }
+    
+    Categoria objeto = new Categoria();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,10 +34,12 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
         JBCadastrar = new javax.swing.JButton();
         JLNomeProd1 = new javax.swing.JLabel();
         JLNomeProd2 = new javax.swing.JLabel();
-        JTFNomeCategoria = new javax.swing.JTextField();
-        JTFTipoCategoria = new javax.swing.JTextField();
+        JTFTamanho = new javax.swing.JTextField();
+        JTFEmbalagem = new javax.swing.JTextField();
         JBCadastrarCategoria = new javax.swing.JButton();
         JBCancelarCategoria = new javax.swing.JButton();
+        JTFNomeCategoria1 = new javax.swing.JTextField();
+        JLNomeProd3 = new javax.swing.JLabel();
 
         JLNomeProd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JLNomeProd.setText("Nome:");
@@ -48,16 +54,27 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
         JLNomeProd1.setText("Nome:");
 
         JLNomeProd2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        JLNomeProd2.setText("Tipo de categoria:");
+        JLNomeProd2.setText("Embalagem:");
 
-        JTFNomeCategoria.addActionListener(new java.awt.event.ActionListener() {
+        JTFTamanho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFNomeCategoriaActionPerformed(evt);
+                JTFTamanhoActionPerformed(evt);
+            }
+        });
+
+        JTFEmbalagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFEmbalagemActionPerformed(evt);
             }
         });
 
         JBCadastrarCategoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBCadastrarCategoria.setText("Cadastrar");
+        JBCadastrarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCadastrarCategoriaActionPerformed(evt);
+            }
+        });
 
         JBCancelarCategoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBCancelarCategoria.setText("Cancelar");
@@ -66,6 +83,15 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
                 JBCancelarCategoriaActionPerformed(evt);
             }
         });
+
+        JTFNomeCategoria1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFNomeCategoria1ActionPerformed(evt);
+            }
+        });
+
+        JLNomeProd3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JLNomeProd3.setText("Tamanho:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,10 +102,12 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTFTipoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLNomeProd1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTFNomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLNomeProd2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JTFEmbalagem, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTFTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JLNomeProd2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JLNomeProd1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTFNomeCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JLNomeProd3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JBCadastrarCategoria)
@@ -92,12 +120,16 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(JLNomeProd1)
+                .addGap(18, 18, 18)
+                .addComponent(JTFNomeCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(JLNomeProd3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JTFNomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
+                .addComponent(JTFTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(JLNomeProd2)
                 .addGap(18, 18, 18)
-                .addComponent(JTFTipoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JTFEmbalagem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCadastrarCategoria)
@@ -108,13 +140,58 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JTFNomeCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFNomeCategoriaActionPerformed
+    private void JTFTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTamanhoActionPerformed
+        JBCadastrarCategoria.requestFocusInWindow();
+    }//GEN-LAST:event_JTFTamanhoActionPerformed
 
     private void JBCancelarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarCategoriaActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarCategoriaActionPerformed
+
+    private void JBCadastrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarCategoriaActionPerformed
+        String nome = "";
+        String tamanho = "";
+        String embalagem = "";
+        
+        try{
+            if(this.JTFNomeCategoria1.getText().length() < 2){
+                 JOptionPane.showMessageDialog(null,"Nome deve conter ao menos 2 caracteres");
+            }else {
+                nome = this.JTFNomeCategoria1.getText();
+            }
+            if (this.JTFTamanho.getText().length() < 2) {
+                JOptionPane.showMessageDialog(null,"Tamanho deve conter ao menos 2 caracteres");
+            } else {
+                tamanho = this.JTFTamanho.getText();
+            }
+            if (this.JTFEmbalagem.getText().length() < 2) {
+                JOptionPane.showMessageDialog(null,"Embalagem deve conter ao menos 2 caracteres");
+            } else {
+                embalagem = this.JTFEmbalagem.getText();
+            }
+            
+            if(nome.length() > 0 && tamanho.length() > 0 && embalagem.length() > 0){
+                if(this.objeto.insertCategoria(nome, tamanho, embalagem)){
+                    JOptionPane.showMessageDialog(rootPane, "Categoria cadastrada com sucesso");
+                    this.JTFNomeCategoria1.setText("");
+                    this.JTFTamanho.setText("");
+                    this.JTFEmbalagem.setText("");
+                }
+                this.setVisible(false);
+            }
+        } catch(HeadlessException | SQLException ex){
+            System.out.println("Erro");
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_JBCadastrarCategoriaActionPerformed
+
+    private void JTFEmbalagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFEmbalagemActionPerformed
+        JBCadastrarCategoria.requestFocusInWindow();
+    }//GEN-LAST:event_JTFEmbalagemActionPerformed
+
+    private void JTFNomeCategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFNomeCategoria1ActionPerformed
+        JBCadastrarCategoria.requestFocusInWindow();
+    }//GEN-LAST:event_JTFNomeCategoria1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,7 +235,9 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
     private javax.swing.JLabel JLNomeProd;
     private javax.swing.JLabel JLNomeProd1;
     private javax.swing.JLabel JLNomeProd2;
-    private javax.swing.JTextField JTFNomeCategoria;
-    private javax.swing.JTextField JTFTipoCategoria;
+    private javax.swing.JLabel JLNomeProd3;
+    private javax.swing.JTextField JTFEmbalagem;
+    private javax.swing.JTextField JTFNomeCategoria1;
+    private javax.swing.JTextField JTFTamanho;
     // End of variables declaration//GEN-END:variables
 }
