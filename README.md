@@ -20,7 +20,7 @@ para análise.
 
 # Banco de Dados
 
-O arquivo "banco.sql" foi criado e serve para criar o banco de dados e suas tabelas.
+O arquivo [banco.sql](banco.sql) foi criado e serve para criar o banco de dados e suas tabelas.
 
 ## Acesso ao banco de dados
 
