@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 import model.Categoria;
-import model.Produto;
 
 public class CategoriaDAO {
     
@@ -56,7 +55,7 @@ public class CategoriaDAO {
     }
 
     public void create(Categoria c) throws SQLException {
-        String sql = "INSERT INTO categoria (nome, tamanho, embalagem) " + "VALUES (?, ?, ?)";
+        String sql = "INSERT INTO categoria (idCategoria, nome, tamanho, embalagem) " + "VALUES (DEFAULT, ?, ?, ?)";
         try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, c.getNome());

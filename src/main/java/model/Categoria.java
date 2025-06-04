@@ -64,7 +64,6 @@ public class Categoria {
     public ArrayList pegarLista(){
         return dao.getMinhaLista();
     }
-    
     public boolean insertCategoria(String nome, String tamanho, String embalagem) throws SQLException{
         int idCategoria = this.maiorID()+1;
         Categoria objeto = new Categoria(idCategoria, nome, tamanho, embalagem);
