@@ -11,10 +11,10 @@ public class Produto {
     private int quantidadeEstoque;
     private int quantidadeMinima;
     private int quantidadeMaxima;
-    private Categoria categoria;
+    private String categoria;
     
     
-    public Produto(int idProduto, String nome, double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, Categoria categoria) {
+    public Produto(int idProduto, String nome, double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) {
         
         this.idProduto = idProduto;
         this.nome = nome;
@@ -29,7 +29,7 @@ public class Produto {
     
      public Produto() {
          
-         this(0, "",0.0, "", 0, 0, 0, null);
+         this(0, "",0.0, "", 0, 0, 0, "");
      }
 
     // Aqui os getters e setters
@@ -90,10 +90,10 @@ public class Produto {
         this.quantidadeMaxima = quantidadeMaxima;
     }
     
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 }
