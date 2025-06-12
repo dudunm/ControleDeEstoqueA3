@@ -62,7 +62,7 @@ public class MovimentacaoDAO {
 
             // Atualiza o produto
             produto.setQuantidadeEstoque(novaQuantidade);
-            produtoDAO.atualizar(produto);
+            produtoDAO.update(produto);
 
             // Registra a movimentação
             String sql = "INSERT INTO movimentacao (data, tipo, quantidade, id_produto) VALUES (?, ?, ?, ?)";

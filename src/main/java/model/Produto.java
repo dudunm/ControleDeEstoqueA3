@@ -1,5 +1,8 @@
 package model;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import dao.ProdutoDAO;
 public class Produto {
     
     // atributos da classe produto
@@ -13,9 +16,9 @@ public class Produto {
     private int quantidadeMaxima;
     private String categoria;
     
-    
+    private final ProdutoDAO dao;
     public Produto(int idProduto, String nome, double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) {
-        
+        this.dao = new ProdutoDAO();
         this.idProduto = idProduto;
         this.nome = nome;
         this.precoUnitario = precoUnitario;
@@ -29,7 +32,7 @@ public class Produto {
     
      public Produto() {
          
-         this(0, "",0.0, "", 0, 0, 0, "");
+         this.dao = new ProdutoDAO();
      }
 
     // Aqui os getters e setters
@@ -95,5 +98,18 @@ public class Produto {
     }
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+     public int maiorID() throws SQLException{
+        return dao.pegarMaiorID();
+    }
+    
+    public ArrayList pegarLista(){
+        return dao.getMinhaLista();
+    }
+    public boolean insertCategoria(String nome, Double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) throws SQLException{
+        int idProduto = this.maiorID()+1;
+        Produto objeto = new Produto(idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria);
+        dao.create(objeto);
+        return true;
     }
 }
