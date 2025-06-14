@@ -106,7 +106,7 @@ public class Produto {
     public ArrayList pegarLista(){
         return dao.getMinhaLista();
     }
-    public boolean insertCategoria(String nome, Double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) throws SQLException{
+    public boolean insertProduto(String nome, Double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) throws SQLException{
         int idProduto = this.maiorID()+1;
         Produto objeto = new Produto(idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria);
         dao.create(objeto);
