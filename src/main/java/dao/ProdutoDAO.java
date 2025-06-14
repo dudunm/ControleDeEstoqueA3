@@ -27,6 +27,28 @@ public class ProdutoDAO {
         } catch(SQLException ex){
         } return maior;
     }
+
+    public Produto buscarPorId(int idProduto) throws SQLException {
+        String sql = "SELECT * FROM produto WHERE idProduto = ?";
+        try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idProduto);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Produto produto = new Produto();
+                    produto.setIdProduto(rs.getInt("idProduto"));
+                    produto.setNome(rs.getString("nome"));
+                    produto.setPrecoUnitario(rs.getDouble("precoUnitario"));
+                    produto.setUnidade(rs.getString("unidade"));
+                    produto.setQuantidadeEstoque(rs.getInt("quantidadeEstoque"));
+                    produto.setQuantidadeMinima(rs.getInt("quantidadeMinima"));
+                    produto.setQuantidadeMaxima(rs.getInt("quantidadeMaxima"));
+                    produto.setCategoria(rs.getString("categoria"));
+                    return produto;
+                }
+            }
+        }
+        return null;
+    }
     
     public ArrayList getMinhaLista() {
         MinhaLista.clear();
@@ -34,14 +56,14 @@ public class ProdutoDAO {
             Connection conexao = ConexaoDAO.getConnection();
             if (conexao != null) {
                 Statement conexaoxao = conexao.createStatement();
-                ResultSet resposta = conexaoxao.executeQuery("SELECT * FROM categoria");
+                ResultSet resposta = conexaoxao.executeQuery("SELECT * FROM produto");
                 while (resposta.next()) {
                     int idProduto = resposta.getInt("idProduto");
                     String nome = resposta.getString("nome");
                     Double precoUnitario = resposta.getDouble("precoUnitario");
                     String unidade = resposta.getString("unidade");
                     int quantidadeEstoque = resposta.getInt("quantidadeEstoque");
-                    int quantidadeMinima = resposta.getInt("quandidadeMinima");
+                    int quantidadeMinima = resposta.getInt("quantidadeMinima");
                     int quantidadeMaxima = resposta.getInt("quantidadeMaxima");
                     String categoria = resposta.getString("categoria");
                     
@@ -59,7 +81,7 @@ public class ProdutoDAO {
     }
 
     public void create(Produto p) throws SQLException {
-        String sql = "INSERT INTO produto (idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria ) " + "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO produto (idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria ) " + "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, p.getNome());
@@ -99,7 +121,7 @@ public class ProdutoDAO {
     }
     public void update(Produto p) throws SQLException {
             
-            String sql = "UPDATE produto SET nome=?, precoUnitario=?, unidade=?, quantidadeestoque=?, quantidadeMinima=?, quantidademaxima=?, categoria=? WHERE idProduto=?";
+            String sql = "UPDATE produto SET nome=?, precoUnitario=?, unidade=?, quantidadeEstoque=?, quantidadeMinima=?, quantidadeMaxima=?, categoria=? WHERE idProduto=?";
             
             try (Connection conn = ConexaoDAO.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
