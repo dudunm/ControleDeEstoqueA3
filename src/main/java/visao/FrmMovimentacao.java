@@ -2,9 +2,13 @@ package visao;
 
 import dao.ConexaoDAO;
 import dao.MovimentacaoDAO;
+import dao.ProdutoDAO;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Movimentacao;
 import model.Produto;
 
@@ -13,12 +17,56 @@ import model.Produto;
  * @author teste
  */
 public class FrmMovimentacao extends javax.swing.JFrame {
+    
+    private MovimentacaoDAO movimentacaoDAO;
+    private ProdutoDAO produtoDAO;
 
     /**
      * Creates new form FrmMovimentacao
      */
     public FrmMovimentacao() {
         initComponents();
+        this.movimentacaoDAO = new MovimentacaoDAO();
+        this.produtoDAO = new ProdutoDAO();
+        carregarTabela();
+    }
+    
+    private void carregarTabela() {
+        try {
+            List<Movimentacao> movimentacoes = movimentacaoDAO.listarTodas();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            model.setRowCount(0);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            int id = 1;
+
+            for (Movimentacao mov : movimentacoes) {
+                Object[] linha = {
+                    id++,
+                    mov.getId_produto(),
+                    mov.getTipo(),
+                    mov.getData().format(formatter),
+                    mov.getQuantidade()
+                };
+                model.addRow(linha);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar movimentações: " + ex.getMessage());
+        }
+    }
+    
+    private Produto buscarProdutoPorNome(String nome) {
+        try {
+            List<Produto> produtos = produtoDAO.readAll();
+            for (Produto produto : produtos) {
+                if (produto.getNome().equalsIgnoreCase(nome.trim())) {
+                    return produto;
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao buscar produto: " + ex.getMessage());
+        }
+        return null;
     }
 
     /**
@@ -83,6 +131,11 @@ public class FrmMovimentacao extends javax.swing.JFrame {
         });
 
         JBRegistrar.setText("Registrar");
+        JBRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,6 +203,71 @@ public class FrmMovimentacao extends javax.swing.JFrame {
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
+
+    private void JBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRegistrarActionPerformed
+        try {
+            String nomeProduto = JTFNome.getText().trim();
+            if (nomeProduto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, informe o nome do produto");
+                return;
+            }
+
+            String tipoStr = JTFTipo.getText().trim().toUpperCase();
+            if (!tipoStr.equals("ENTRADA") && !tipoStr.equals("SAIDA")) {
+                JOptionPane.showMessageDialog(this, "Tipo deve ser 'ENTRADA' ou 'SAIDA'");
+                return;
+            }
+
+            int quantidade;
+            try {
+                quantidade = Integer.parseInt(JTFQuantidade.getText().trim());
+                if (quantidade <= 0) {
+                    JOptionPane.showMessageDialog(this, "Quantidade deve ser maior que zero");
+                    return;
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Por favor, informe uma quantidade válida");
+                return;
+            }
+
+            // Busca um produto pelo nome
+            Produto produto = buscarProdutoPorNome(nomeProduto);
+            if (produto == null) {
+                JOptionPane.showMessageDialog(this, "Produto não encontrado: " + nomeProduto);
+                return;
+            }
+
+            // Cria uma movimentação
+            Movimentacao movimentacao = new Movimentacao();
+            movimentacao.setData(LocalDateTime.now());
+            movimentacao.setTipo(tipoStr);
+            movimentacao.setQuantidade(quantidade);
+            movimentacao.setId_produto(produto.getIdProduto());
+
+            // Registra a movimentação
+            String alerta = movimentacaoDAO.registrarMovimentacao(movimentacao);
+
+            String mensagem = "Movimentação registrada com sucesso!";
+            if (alerta != null) {
+                mensagem += "\n\n" + alerta;
+            }
+            JOptionPane.showMessageDialog(this, mensagem);
+
+            // Limpa os campos
+            JTFNome.setText("");
+            JTFTipo.setText("");
+            JTFQuantidade.setText("");
+            JTFData.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+            // Recarrega a tabela
+            carregarTabela();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao registrar movimentação: " + ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro inesperado: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_JBRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
