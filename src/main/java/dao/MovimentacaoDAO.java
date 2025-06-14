@@ -24,14 +24,21 @@ public class MovimentacaoDAO {
         this.produtoDAO = new ProdutoDAO();
     }
 
+    public MovimentacaoDAO() {
+        this.produtoDAO = new ProdutoDAO();
+    }
+
     public String registrarMovimentacao(Movimentacao movimentacao) throws SQLException {
         String mensagemAlerta = null;
-        boolean autoCommitOriginal = conexao.getAutoCommit();
+        Connection conn = null;
+        boolean autoCommitOriginal = true;
 
         try {
-            conexao.setAutoCommit(false);
+            conn = (this.conexao != null) ? this.conexao : ConexaoDAO.getConnection();
+            autoCommitOriginal = conn.getAutoCommit();
+            conn.setAutoCommit(false);
 
-            Produto produto = produtoDAO.buscarPorId(movimentacao.getId_produto());
+            Produto produto = buscarProdutoPorId(movimentacao.getId_produto(), conn);
             if (produto == null) {
                 throw new SQLException("Produto não encontrado!");
             }
@@ -62,12 +69,12 @@ public class MovimentacaoDAO {
 
             // Atualiza o produto
             produto.setQuantidadeEstoque(novaQuantidade);
-            produtoDAO.update(produto);
+            atualizarProduto(produto, conn);
 
             // Registra a movimentação
             String sql = "INSERT INTO movimentacao (data, tipo, quantidade, id_produto) VALUES (?, ?, ?, ?)";
 
-            try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setObject(1, movimentacao.getData());
                 stmt.setString(2, tipo);
                 stmt.setInt(3, movimentacao.getQuantidade());
@@ -75,18 +82,57 @@ public class MovimentacaoDAO {
                 stmt.executeUpdate();
             }
 
-            conexao.commit();
+            conn.commit();
             return mensagemAlerta;
 
         } catch (SQLException e) {
-            conexao.rollback();
+            if (conn != null) {
+                conn.rollback();
+            }
             throw e;
         } finally {
-            try {
-                conexao.setAutoCommit(autoCommitOriginal);
-            } catch (SQLException e) {
-                // Logar erro se necessário
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(autoCommitOriginal);
+
+                    if (this.conexao == null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    // Logar erro se necessário
+                }
             }
+        }
+    }
+
+    private Produto buscarProdutoPorId(int idProduto, Connection conn) throws SQLException {
+        String sql = "SELECT * FROM produto WHERE idProduto = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idProduto);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Produto produto = new Produto();
+                    produto.setIdProduto(rs.getInt("idProduto"));
+                    produto.setNome(rs.getString("nome"));
+                    produto.setPrecoUnitario(rs.getDouble("precoUnitario"));
+                    produto.setUnidade(rs.getString("unidade"));
+                    produto.setQuantidadeEstoque(rs.getInt("quantidadeEstoque"));
+                    produto.setQuantidadeMinima(rs.getInt("quantidadeMinima"));
+                    produto.setQuantidadeMaxima(rs.getInt("quantidadeMaxima"));
+                    produto.setCategoria(rs.getString("categoria"));
+                    return produto;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void atualizarProduto(Produto produto, Connection conn) throws SQLException {
+        String sql = "UPDATE produto SET quantidadeEstoque = ? WHERE idProduto = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, produto.getQuantidadeEstoque());
+            stmt.setInt(2, produto.getIdProduto());
+            stmt.executeUpdate();
         }
     }
 
@@ -94,7 +140,7 @@ public class MovimentacaoDAO {
         String sql = "SELECT * FROM movimentacao WHERE id_produto = ? ORDER BY data DESC";
         List<Movimentacao> movimentacoes = new ArrayList<>();
 
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idProduto);
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -116,7 +162,7 @@ public class MovimentacaoDAO {
         String sql = "SELECT * FROM movimentacao ORDER BY data DESC";
         List<Movimentacao> movimentacoes = new ArrayList<>();
 
-        try (PreparedStatement stmt = conexao.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 Movimentacao mov = new Movimentacao();
