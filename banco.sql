@@ -13,7 +13,8 @@ CREATE TABLE produtos(
     quantidadeEstoque INT,
     quantidadeMinima INT,
     quantidadeMaxima INT,
-    idCategoria INT,
+    categoria varchar(50),
+    idCategoria int,
     FOREIGN KEY (idCategoria) REFERENCES categoria(idCategoria)
 );
 
@@ -26,4 +27,6 @@ CREATE TABLE movimentacao(
     FOREIGN KEY (idProduto) REFERENCES produtos(idProduto)
 );
 
-select * from categoria;        
+select * from produtos;      
+
+drop table categoria;  

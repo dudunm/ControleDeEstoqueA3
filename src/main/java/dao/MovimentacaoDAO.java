@@ -38,7 +38,7 @@ public class MovimentacaoDAO {
             autoCommitOriginal = conn.getAutoCommit();
             conn.setAutoCommit(false);
 
-            Produto produto = buscarProdutoPorId(movimentacao.getId_produto(), conn);
+            Produto produto = buscarProdutoPorId(movimentacao.getIdProduto(), conn);
             if (produto == null) {
                 throw new SQLException("Produto não encontrado!");
             }
@@ -72,13 +72,13 @@ public class MovimentacaoDAO {
             atualizarProduto(produto, conn);
 
             // Registra a movimentação
-            String sql = "INSERT INTO movimentacao (data, tipo, quantidade, id_produto) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO movimentacao (data, tipo, quantidade, idProduto) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setObject(1, movimentacao.getData());
                 stmt.setString(2, tipo);
                 stmt.setInt(3, movimentacao.getQuantidade());
-                stmt.setInt(4, movimentacao.getId_produto());
+                stmt.setInt(4, movimentacao.getIdProduto());
                 stmt.executeUpdate();
             }
 
@@ -106,7 +106,7 @@ public class MovimentacaoDAO {
     }
 
     private Produto buscarProdutoPorId(int idProduto, Connection conn) throws SQLException {
-        String sql = "SELECT * FROM produto WHERE idProduto = ?";
+        String sql = "SELECT * FROM produtos WHERE idProduto = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idProduto);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -128,7 +128,7 @@ public class MovimentacaoDAO {
     }
 
     private void atualizarProduto(Produto produto, Connection conn) throws SQLException {
-        String sql = "UPDATE produto SET quantidadeEstoque = ? WHERE idProduto = ?";
+        String sql = "UPDATE produtos SET quantidadeEstoque = ? WHERE idProduto = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, produto.getQuantidadeEstoque());
             stmt.setInt(2, produto.getIdProduto());
@@ -137,7 +137,7 @@ public class MovimentacaoDAO {
     }
 
     public List<Movimentacao> listarPorProduto(int idProduto) throws SQLException {
-        String sql = "SELECT * FROM movimentacao WHERE id_produto = ? ORDER BY data DESC";
+        String sql = "SELECT * FROM movimentacao WHERE idProduto = ? ORDER BY data DESC";
         List<Movimentacao> movimentacoes = new ArrayList<>();
 
         try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -149,7 +149,7 @@ public class MovimentacaoDAO {
                     mov.setData(rs.getObject("data", LocalDateTime.class));
                     mov.setTipo(rs.getString("tipo"));
                     mov.setQuantidade(rs.getInt("quantidade"));
-                    mov.setId_produto(rs.getInt("id_produto"));
+                    mov.setIdProduto(rs.getInt("IdProduto"));
 
                     movimentacoes.add(mov);
                 }
@@ -169,7 +169,7 @@ public class MovimentacaoDAO {
                 mov.setData(rs.getObject("data", LocalDateTime.class));
                 mov.setTipo(rs.getString("tipo"));
                 mov.setQuantidade(rs.getInt("quantidade"));
-                mov.setId_produto(rs.getInt("id_produto"));
+                mov.setIdProduto(rs.getInt("IdProduto"));
 
                 movimentacoes.add(mov);
             }

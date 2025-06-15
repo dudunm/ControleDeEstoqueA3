@@ -1,7 +1,6 @@
 package dao;
 
 import model.Produto;
-import model.Categoria;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,7 @@ public class ProdutoDAO {
     }
 
     public Produto buscarPorId(int idProduto) throws SQLException {
-        String sql = "SELECT * FROM produto WHERE idProduto = ?";
+        String sql = "SELECT * FROM produtos WHERE idProduto = ?";
         try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idProduto);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -56,7 +55,7 @@ public class ProdutoDAO {
             Connection conexao = ConexaoDAO.getConnection();
             if (conexao != null) {
                 Statement conexaoxao = conexao.createStatement();
-                ResultSet resposta = conexaoxao.executeQuery("SELECT * FROM produto");
+                ResultSet resposta = conexaoxao.executeQuery("SELECT * FROM produtos");
                 while (resposta.next()) {
                     int idProduto = resposta.getInt("idProduto");
                     String nome = resposta.getString("nome");
@@ -81,7 +80,7 @@ public class ProdutoDAO {
     }
 
     public void create(Produto p) throws SQLException {
-        String sql = "INSERT INTO produto (idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria ) " + "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO produtos (idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria ) " + "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, p.getNome());
@@ -97,7 +96,7 @@ public class ProdutoDAO {
 
     public List<Produto> readAll() throws SQLException {
         List<Produto> lista = new ArrayList<>();
-        String sql = "SELECT * FROM produto";
+        String sql = "SELECT * FROM produtos";
 
         try (Connection conn = ConexaoDAO.getConnection();
             Statement stmt = conn.createStatement();
@@ -121,7 +120,7 @@ public class ProdutoDAO {
     }
     public void update(Produto p) throws SQLException {
             
-            String sql = "UPDATE produto SET nome=?, precoUnitario=?, unidade=?, quantidadeEstoque=?, quantidadeMinima=?, quantidadeMaxima=?, categoria=? WHERE idProduto=?";
+            String sql = "UPDATE produtos SET nome=?, precoUnitario=?, unidade=?, quantidadeEstoque=?, quantidadeMinima=?, quantidadeMaxima=?, categoria=? WHERE idProduto=?";
             
             try (Connection conn = ConexaoDAO.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -139,7 +138,7 @@ public class ProdutoDAO {
         }
         
         public void delete(int idProduto) throws SQLException {
-            String sql = "DELETE FROM produto WHERE idProduto=?";
+            String sql = "DELETE FROM produtos WHERE idProduto=?";
             try (Connection conn = ConexaoDAO.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
                     

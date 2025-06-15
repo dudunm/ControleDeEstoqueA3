@@ -11,17 +11,17 @@ public class Movimentacao {
     private LocalDateTime data;
     private String tipo;
     private int quantidade;
-    private int id_produto;
+    private int idProduto;
 
     public Movimentacao() {
         this(LocalDateTime.now(), "", 0, 0);
     }
 
-    public Movimentacao(LocalDateTime data, String tipo, int quantidade, int id_produto) {
+    public Movimentacao(LocalDateTime data, String tipo, int quantidade, int idProduto) {
         this.data = data;
         this.tipo = tipo;
         this.quantidade = quantidade;
-        this.id_produto = id_produto;
+        this.idProduto = idProduto;
     }
 
     public LocalDateTime getData() {
@@ -48,11 +48,11 @@ public class Movimentacao {
         this.quantidade = quantidade;
     }
 
-    public int getId_produto() {
-        return id_produto;
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public void setId_produto(int id_produto) {
-        this.id_produto = id_produto;
+    public void setIdProduto(int id_produto) {
+        this.idProduto = idProduto;
     }
 }

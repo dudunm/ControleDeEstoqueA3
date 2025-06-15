@@ -213,7 +213,7 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
             }
 
             // Validando a categoria
-            if (this.JTFCategoria.getText().length() < 2) {
+            if (this.JTFCategoria.getText().length() < 0) {
                 JOptionPane.showMessageDialog(null, "Categoria deve conter ao menos 2 caracteres");
             } else {
                 categoria = this.JTFCategoria.getText();

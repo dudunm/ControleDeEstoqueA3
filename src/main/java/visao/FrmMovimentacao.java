@@ -43,7 +43,7 @@ public class FrmMovimentacao extends javax.swing.JFrame {
             for (Movimentacao mov : movimentacoes) {
                 Object[] linha = {
                     id++,
-                    mov.getId_produto(),
+                    mov.getIdProduto(),
                     mov.getTipo(),
                     mov.getData().format(formatter),
                     mov.getQuantidade()
@@ -242,7 +242,7 @@ public class FrmMovimentacao extends javax.swing.JFrame {
             movimentacao.setData(LocalDateTime.now());
             movimentacao.setTipo(tipoStr);
             movimentacao.setQuantidade(quantidade);
-            movimentacao.setId_produto(produto.getIdProduto());
+            movimentacao.setIdProduto(produto.getIdProduto());
 
             // Registra a movimentação
             String alerta = movimentacaoDAO.registrarMovimentacao(movimentacao);
