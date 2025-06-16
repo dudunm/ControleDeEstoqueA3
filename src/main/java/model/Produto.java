@@ -103,7 +103,7 @@ public class Produto {
         return dao.pegarMaiorID();
     }
     
-    public ArrayList pegarLista(){
+    public ArrayList<Produto> getMinhaLista() {
         return dao.getMinhaLista();
     }
     public boolean insertProduto(String nome, Double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) throws SQLException{

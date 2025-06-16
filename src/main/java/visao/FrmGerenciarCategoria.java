@@ -1,20 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package visao;
 
-/**
- *
- * @author Leonardo
- */
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.Categoria;
+
+
 public class FrmGerenciarCategoria extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmGerenciarCategoria
-     */
+   private Categoria objetocategoria;
     public FrmGerenciarCategoria() {
         initComponents();
+        this.objetocategoria = new Categoria(); // carrega objetoaluno de aluno
+        this.carregaTabela();
+    }
+     public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JTCategoria.getModel();
+        modelo.setNumRows(0); //Posiciona na primeira linha da tabela
+//Carrega a lista de objetos aluno
+        ArrayList<Categoria> minhaLista = objetocategoria.getMinhaLista();
+        for (Categoria c : minhaLista) {
+            modelo.addRow(new Object[]{
+                c.getIdCategoria(),
+                c.getNome(),
+                c.getTamanho(),
+                c.getEmbalagem()
+                
+            });
+        }
     }
 
     /**
@@ -28,47 +41,49 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
 
         JLNomeUser = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTCategoria = new javax.swing.JTable();
         JLNomeUser1 = new javax.swing.JLabel();
         JLNomeUser2 = new javax.swing.JLabel();
         JTFNome = new javax.swing.JTextField();
-        JTFTipo = new javax.swing.JTextField();
+        JTFEmbalagem = new javax.swing.JTextField();
         JBAlterar = new javax.swing.JButton();
         JBCancelar = new javax.swing.JButton();
         JBApagar = new javax.swing.JButton();
+        JLNomeUser3 = new javax.swing.JLabel();
+        JTFTamanho = new javax.swing.JTextField();
 
         JLNomeUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JLNomeUser.setText("Nome:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "NOME", "TIPO"
+                "ID", "NOME", "EMBALAGEM", "TAMANHO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
+        JTCategoria.setToolTipText("");
+        jScrollPane1.setViewportView(JTCategoria);
 
         JLNomeUser1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        JLNomeUser1.setText("Nome:");
+        JLNomeUser1.setText("Tamanho:");
 
         JLNomeUser2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        JLNomeUser2.setText("Tipo:");
+        JLNomeUser2.setText("Embalagem:");
 
         JTFNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,9 +91,9 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
             }
         });
 
-        JTFTipo.addActionListener(new java.awt.event.ActionListener() {
+        JTFEmbalagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFTipoActionPerformed(evt);
+                JTFEmbalagemActionPerformed(evt);
             }
         });
 
@@ -98,6 +113,15 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
         JBApagar.setText("Apagar");
         JBApagar.setPreferredSize(new java.awt.Dimension(92, 32));
 
+        JLNomeUser3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JLNomeUser3.setText("Nome:");
+
+        JTFTamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFTamanhoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,9 +135,11 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(JLNomeUser1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                        .addComponent(JLNomeUser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(JLNomeUser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JLNomeUser3, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
                     .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTFTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTFEmbalagem, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(JBAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,19 +152,27 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(18, 18, 18)
+                .addComponent(JLNomeUser3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLNomeUser1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
+                        .addGap(29, 29, 29)
+                        .addComponent(JLNomeUser1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JTFTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JLNomeUser2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JTFTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JBCancelar)))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(JBCancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(JTFEmbalagem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
                         .addComponent(JBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
                         .addComponent(JBApagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,13 +187,17 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFNomeActionPerformed
 
-    private void JTFTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTipoActionPerformed
+    private void JTFEmbalagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFEmbalagemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTFTipoActionPerformed
+    }//GEN-LAST:event_JTFEmbalagemActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
+
+    private void JTFTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTamanhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFTamanhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,9 +241,11 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
     private javax.swing.JLabel JLNomeUser;
     private javax.swing.JLabel JLNomeUser1;
     private javax.swing.JLabel JLNomeUser2;
+    private javax.swing.JLabel JLNomeUser3;
+    private javax.swing.JTable JTCategoria;
+    private javax.swing.JTextField JTFEmbalagem;
     private javax.swing.JTextField JTFNome;
-    private javax.swing.JTextField JTFTipo;
+    private javax.swing.JTextField JTFTamanho;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

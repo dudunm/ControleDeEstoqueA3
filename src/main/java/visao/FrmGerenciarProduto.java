@@ -1,22 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package visao;
 
-/**
- *
- * @author rafae
- */
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.Produto;
+
+
 public class FrmGerenciarProduto extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmGerenciarProduto
-     */
+    private Produto objetoproduto;
     public FrmGerenciarProduto() {
         initComponents();
-    }
+        this.objetoproduto = new Produto(); // carrega objetoaluno de aluno
+        this.carregaTabela();
 
+    }
+    public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JTProduto.getModel();
+        modelo.setNumRows(0); //Posiciona na primeira linha da tabela
+//Carrega a lista de objetos aluno
+        ArrayList<Produto> minhaLista = objetoproduto.getMinhaLista();
+        for (Produto p : minhaLista) {
+            modelo.addRow(new Object[]{
+                p.getIdProduto(),
+                p.getNome(),
+                p.getQuantidadeEstoque(),
+                p.getPrecoUnitario()
+            });
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
