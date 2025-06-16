@@ -1,7 +1,9 @@
 
 package visao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Categoria;
 
@@ -77,6 +79,11 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
             }
         });
         JTCategoria.setToolTipText("");
+        JTCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTCategoriaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTCategoria);
 
         JLNomeUser1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -100,6 +107,11 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
         JBAlterar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBAlterar.setText("Alterar");
         JBAlterar.setPreferredSize(new java.awt.Dimension(92, 32));
+        JBAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBAlterarActionPerformed(evt);
+            }
+        });
 
         JBCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBCancelar.setText("Cancelar");
@@ -112,6 +124,11 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
         JBApagar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBApagar.setText("Apagar");
         JBApagar.setPreferredSize(new java.awt.Dimension(92, 32));
+        JBApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBApagarActionPerformed(evt);
+            }
+        });
 
         JLNomeUser3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JLNomeUser3.setText("Nome:");
@@ -198,6 +215,112 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
     private void JTFTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFTamanhoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFTamanhoActionPerformed
+
+    private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
+        try {
+            // recebendo e validando dados da interface gr�fica.
+           int id = 0;
+        String nome = "";
+        String embalagem = "";
+        String tamanho = "";
+        
+
+        if (this.JTFNome.getText().length() < 2) {
+            throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+        } else {
+            nome = this.JTFNome.getText();
+        }
+
+        if (this.JTFEmbalagem.getText().length() <= 0) {
+            throw new Mensagem("Embalagem deve ter ao menos 2 caracteres");
+        } else {
+            embalagem = this.JTFEmbalagem.getText();
+        }
+
+        if (this.JTFTamanho.getText().length() < 2) {
+            throw new Mensagem("Tamanho deve conter ao menos 2 caracteres.");
+        } else {
+            tamanho = this.JTFTamanho.getText();
+        }
+
+        if (this.JTCategoria.getSelectedRow() == -1) {
+            throw new Mensagem("Primeiro Selecione uma Categoria para Alterar");
+        } else {
+            id = Integer.parseInt(this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 0).toString());
+        }
+
+        // envia os dados para a categoria processar
+        if (this.objetocategoria.updatecategoria(id, nome, embalagem, tamanho)) {
+            // limpa os campos
+            this.JTFNome.setText("");
+            this.JTFEmbalagem.setText("");
+            this.JTFTamanho.setText(""); 
+            JOptionPane.showMessageDialog(null, "Categoria Alterada com Sucesso!");
+
+        }
+        // Exibe no console a categoria cadastrada
+        System.out.println(this.objetocategoria.getMinhaLista().toString());
+    }
+        
+        catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+    }
+    catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+    }
+    
+
+        finally {
+            // atualiza a tabela.
+            carregaTabela();
+    }
+    }//GEN-LAST:event_JBAlterarActionPerformed
+
+    private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
+         try {
+            // validando dados da interface gráfica.
+            int id = 0;
+            if (this.JTCategoria.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione uma Categoria para APAGAR");
+            } else {
+                id = Integer.parseInt(this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 0).toString());
+            }
+
+            // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
+            int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja apagar esta Categoria ?");
+
+            if (respostaUsuario == 0) {// clicou em SIM
+                // envia os dados para a categoria processar
+                if (this.objetocategoria.deleteCategoria(id)) {
+                    // limpa os campos
+                    this.JTFNome.setText("");
+                    this.JTFEmbalagem.setText("");
+                    this.JTFTamanho.setText("");
+                    
+                    JOptionPane.showMessageDialog(rootPane, "Categoria Apagada com Sucesso!");
+                }
+            }
+            // atualiza a tabela.
+            System.out.println(this.objetocategoria.getMinhaLista().toString());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            // atualiza a tabela.
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBApagarActionPerformed
+
+    private void JTCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTCategoriaMouseClicked
+         if (this.JTCategoria.getSelectedRow() != -1) {
+            String nome = this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 1).toString();
+            String embalagem = this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 2).toString();
+            String tamanho = this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 3).toString();
+
+            this.JTFNome.setText(nome);
+            this.JTFEmbalagem.setText(embalagem);
+            this.JTFTamanho.setText(tamanho);
+        }
+    }//GEN-LAST:event_JTCategoriaMouseClicked
 
     /**
      * @param args the command line arguments

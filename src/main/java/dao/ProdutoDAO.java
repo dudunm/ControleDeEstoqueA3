@@ -18,7 +18,7 @@ public class ProdutoDAO {
             Connection conexao = ConexaoDAO.getConnection();
             if(conexao != null){
                 try(Statement stm = conexao.createStatement()){
-                    ResultSet res =  stm.executeQuery("SELECT MAX(idProduto) idProduto from produto");
+                    ResultSet res =  stm.executeQuery("SELECT MAX(idProduto) idProduto from produtos");
                     res.next();
                     maior = res.getInt("idProduto");
                 }

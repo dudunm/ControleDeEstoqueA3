@@ -57,6 +57,33 @@ public class Categoria {
         this.embalagem = embalagem;
     }
     
+     /**
+     * Deleta um aluno especÍfico pelo seu ID.
+     *
+     * @param id Id do aluno a ser excluído.
+     * @return Verdadeiro ou falso se conseguiu fazer a exclusão.
+     */
+    public boolean deleteCategoria(int id) throws SQLException {
+        dao.delete(id);
+        return true;
+    }
+
+    /**
+     * Edita um aluno especÍfico pelo seu ID.
+     *
+     * @param id O id do aluno.
+     * @param nome O nome do aluno.
+     * @param embalagem A idade do aluno.
+     * @param tamanho O curso do aluno
+     
+     * @return Verdadeiro ou falso se conseguiu fazer a inclusão.
+     */
+    public boolean updatecategoria(int id, String nome, String embalagem, String tamanho) throws SQLException{
+        Categoria objeto = new Categoria(id, nome, embalagem, tamanho);
+        dao.update(objeto);
+        return true;
+    }
+    
     public int maiorID() throws SQLException{
         return dao.pegarMaiorID();
     }
