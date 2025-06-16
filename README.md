@@ -15,7 +15,7 @@ para análise.
 - Eduardo Nienkotter Marcelino - RA: 10725117189 - Users: dudu, dudun, dudunm;
 - Júlio César Santos de Oliveira - RA: 10724268894 - User: juliolvv;
 - Leonardo Luiz Clasen - RA: 1072518621 - Users: Leonardo, leoclasen;
-- Rafael Dutra Buchner - RA: 10724271424 - Users: rafae, moggo1313;
+- Rafael Dutra Buchner - RA: 10724271424 - Users: rafae, rafaeldb1;
 - Vitor da Silva Coelho - RA: 1072514803 - Users: Vitor, VitorScoelho12;
 
 # Banco de Dados
