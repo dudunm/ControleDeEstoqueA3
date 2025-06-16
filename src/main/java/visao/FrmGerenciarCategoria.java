@@ -219,7 +219,7 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
     private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
         try {
             // recebendo e validando dados da interface gr�fica.
-           int id = 0;
+           int idCategoria = 0;
         String nome = "";
         String embalagem = "";
         String tamanho = "";
@@ -246,11 +246,11 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
         if (this.JTCategoria.getSelectedRow() == -1) {
             throw new Mensagem("Primeiro Selecione uma Categoria para Alterar");
         } else {
-            id = Integer.parseInt(this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 0).toString());
+            idCategoria = Integer.parseInt(this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 0).toString());
         }
 
         // envia os dados para a categoria processar
-        if (this.objetocategoria.updatecategoria(id, nome, embalagem, tamanho)) {
+        if (this.objetocategoria.updatecategoria(idCategoria, nome, embalagem, tamanho)) {
             // limpa os campos
             this.JTFNome.setText("");
             this.JTFEmbalagem.setText("");
@@ -279,11 +279,11 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
     private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
          try {
             // validando dados da interface gráfica.
-            int id = 0;
+            int idCategoria = 0;
             if (this.JTCategoria.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione uma Categoria para APAGAR");
             } else {
-                id = Integer.parseInt(this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 0).toString());
+                idCategoria = Integer.parseInt(this.JTCategoria.getValueAt(this.JTCategoria.getSelectedRow(), 0).toString());
             }
 
             // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
@@ -291,7 +291,7 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
 
             if (respostaUsuario == 0) {// clicou em SIM
                 // envia os dados para a categoria processar
-                if (this.objetocategoria.deleteCategoria(id)) {
+                if (this.objetocategoria.deleteCategoria(idCategoria)) {
                     // limpa os campos
                     this.JTFNome.setText("");
                     this.JTFEmbalagem.setText("");

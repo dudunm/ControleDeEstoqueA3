@@ -58,9 +58,9 @@ public class Categoria {
     }
     
      /**
-     * Deleta um aluno especÍfico pelo seu ID.
+     * Deleta uma categoria especÍfica pelo seu ID.
      *
-     * @param id Id do aluno a ser excluído.
+     * @param id Id da categoria a ser excluída.
      * @return Verdadeiro ou falso se conseguiu fazer a exclusão.
      */
     public boolean deleteCategoria(int id) throws SQLException {
@@ -69,12 +69,12 @@ public class Categoria {
     }
 
     /**
-     * Edita um aluno especÍfico pelo seu ID.
+     * Edita uma categoria especÍfica pelo seu ID.
      *
-     * @param id O id do aluno.
-     * @param nome O nome do aluno.
-     * @param embalagem A idade do aluno.
-     * @param tamanho O curso do aluno
+     * @param id O id da categoria.
+     * @param nome O nome da categoria.
+     * @param embalagem A embalagem da categoiria.
+     * @param tamanho O tamanho da categoira.
      
      * @return Verdadeiro ou falso se conseguiu fazer a inclusão.
      */

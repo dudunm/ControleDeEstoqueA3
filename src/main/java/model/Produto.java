@@ -99,6 +99,37 @@ public class Produto {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+    
+     /**
+     * Deleta uma categoria especÍfica pelo seu ID.
+     *
+     * @param id Id da categoria a ser excluída.
+     * @return Verdadeiro ou falso se conseguiu fazer a exclusão.
+     */
+    public boolean deleteProduto(int id) throws SQLException {
+        dao.delete(id);
+        return true;
+    }
+
+    /**
+     * Edita uma categoria especÍfica pelo seu ID.
+     *
+     * @param idProduto O id do produto.
+     * @param nome O nome do produto.
+     * @param precoUnitario O nome do produto.
+     * @param unidade O nome do produto. 
+     * @param quantidadeEstoque O nome do produto.
+     * @param quantidadeMinima O nome do produto.
+     * @param quantidadeMaxima O nome do produto.
+     * @param categoria O nome do produto.
+     * @return Verdadeiro ou falso se conseguiu fazer a inclusão.
+     */
+    public boolean updateProduto(int idProduto, String nome, Double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria ) throws SQLException{
+        Produto objeto = new Produto(idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria);
+        dao.update(objeto);
+        return true;
+    }
+    
      public int maiorID() throws SQLException{
         return dao.pegarMaiorID();
     }
