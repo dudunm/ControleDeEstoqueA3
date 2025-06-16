@@ -7,7 +7,7 @@ situação fictícia, em JAVA-MVC com MAVEN.
 
 O sistema de Controle de Estoque é desenvolvido para facilitar no controle,
 organização e categorização de um estoque. O sistema permite registrar e 
-gerenciar os produtos, os úsuarios do sistema e fornece relatórios úteis
+gerenciar os produtos e as suas categorias no sistema, além de fornece relatórios úteis
 para análise.
 
  # Integrantes
