@@ -58,9 +58,9 @@ public class FrmMovimentacao extends javax.swing.JFrame {
     private Produto buscarProdutoPorNome(String nome) {
         try {
             List<Produto> produtos = produtoDAO.readAll();
-            for (Produto produto : produtos) {
-                if (produto.getNome().equalsIgnoreCase(nome.trim())) {
-                    return produto;
+            for (Produto prod : produtos) {
+                if (prod.getNome().equalsIgnoreCase(nome.trim())) {
+                    return prod;
                 }
             }
         } catch (SQLException ex) {

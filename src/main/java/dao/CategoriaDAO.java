@@ -64,29 +64,28 @@ public class CategoriaDAO {
             stmt.executeUpdate();
         }
     }
-
-    public List<Categoria> readAll() throws SQLException {
-        List<Categoria> lista = new ArrayList<>();
-        String sql = "SELECT * FROM categoria";
-
+    
+    public ArrayList<Categoria> getNomesCategorias() {
+        ArrayList<Categoria> nomes = new ArrayList<>();
         try (Connection conn = ConexaoDAO.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)) {
+             Statement stmt = conn.createStatement();
+             ResultSet res = stmt.executeQuery("SELECT nome, embalagem, tamanho FROM categoria")) {
 
-            while (rs.next()) {
-
-                Categoria c = new Categoria();
-
-                c.setIdCategoria(rs.getInt("idCategoria"));
-                c.setNome(rs.getString("nome"));
-                c.setTamanho(rs.getString("tamanho"));
-                c.setEmbalagem(rs.getString("embalagem"));
+            while (res.next()) {
                 
-                lista.add(c);
+                Categoria c = new Categoria();
+                
+                c.setIdCategoria(res.getInt("idCategoria"));
+                c.setNome(res.getString("nome"));
+                c.setTamanho(res.getString("tamanho"));
+                c.setEmbalagem(res.getString("embalagem"));
             }
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex);
         }
-        return lista;
+        return nomes;
     }
+    
     public void update(Categoria c) throws SQLException {
             
             String sql = "UPDATE categoria SET nome=?, tamanho=?, embalagem=? WHERE idCategoria=?";

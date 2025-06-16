@@ -27,6 +27,6 @@ CREATE TABLE movimentacao(
     FOREIGN KEY (idProduto) REFERENCES produtos(idProduto)
 );
 
+select * from categoria;
 select * from produtos;      
-
-drop table categoria;  
+select * from movimentacao;
