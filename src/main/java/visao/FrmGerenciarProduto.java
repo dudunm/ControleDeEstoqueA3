@@ -26,7 +26,11 @@ public class FrmGerenciarProduto extends javax.swing.JFrame {
                 p.getIdProduto(),
                 p.getNome(),
                 p.getQuantidadeEstoque(),
-                p.getPrecoUnitario()
+                p.getPrecoUnitario(),
+                p.getUnidade(),
+                p.getQuantidadeMinima(),
+                p.getQuantidadeMaxima(),
+                p.getCategoria()
             });
         }
     }
