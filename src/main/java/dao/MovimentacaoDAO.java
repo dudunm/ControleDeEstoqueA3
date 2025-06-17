@@ -17,15 +17,14 @@ import java.util.List;
 public class MovimentacaoDAO {
 
     private Connection conexao;
-    private ProdutoDAO produtoDAO;
-
+    
     public MovimentacaoDAO(Connection conexao) {
         this.conexao = conexao;
-        this.produtoDAO = new ProdutoDAO();
+        new ProdutoDAO();
     }
 
     public MovimentacaoDAO() {
-        this.produtoDAO = new ProdutoDAO();
+        new ProdutoDAO();
     }
 
     public String registrarMovimentacao(Movimentacao movimentacao) throws SQLException {

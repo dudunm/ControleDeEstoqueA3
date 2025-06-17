@@ -1,11 +1,11 @@
 package visao;
 
-import dao.ConexaoDAO;
 import dao.MovimentacaoDAO;
 import dao.ProdutoDAO;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,15 +20,14 @@ public class FrmMovimentacao extends javax.swing.JFrame {
     
     private MovimentacaoDAO movimentacaoDAO;
     private ProdutoDAO produtoDAO;
-
-    /**
-     * Creates new form FrmMovimentacao
-     */
+    private Produto objetoProduto;
+    
     public FrmMovimentacao() {
         initComponents();
         this.movimentacaoDAO = new MovimentacaoDAO();
         this.produtoDAO = new ProdutoDAO();
         carregarTabela();
+        this.objetoProduto = new Produto();
     }
     
     private void carregarTabela() {
@@ -54,7 +53,7 @@ public class FrmMovimentacao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro ao carregar movimentações: " + ex.getMessage());
         }
     }
-    
+
     private Produto buscarProdutoPorNome(String nome) {
         try {
             List<Produto> produtos = produtoDAO.readAll();
@@ -231,8 +230,8 @@ public class FrmMovimentacao extends javax.swing.JFrame {
             }
 
             // Busca um produto pelo nome
-            Produto produto = buscarProdutoPorNome(nomeProduto);
-            if (produto == null) {
+            Produto prod = buscarProdutoPorNome(nomeProduto);
+            if (prod == null) {
                 JOptionPane.showMessageDialog(this, "Produto não encontrado: " + nomeProduto);
                 return;
             }
@@ -242,7 +241,7 @@ public class FrmMovimentacao extends javax.swing.JFrame {
             movimentacao.setData(LocalDateTime.now());
             movimentacao.setTipo(tipoStr);
             movimentacao.setQuantidade(quantidade);
-            movimentacao.setIdProduto(produto.getIdProduto());
+            movimentacao.setIdProduto(prod.getIdProduto());
 
             // Registra a movimentação
             String alerta = movimentacaoDAO.registrarMovimentacao(movimentacao);

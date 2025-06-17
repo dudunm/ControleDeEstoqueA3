@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
+import dao.MovimentacaoDAO;
 
 
 public class FrmGerenciarProduto extends javax.swing.JFrame {
@@ -281,8 +282,8 @@ public class FrmGerenciarProduto extends javax.swing.JFrame {
             precoUnitario = Double.parseDouble(this.JTFPreco.getText());
         }
         
-        if (this.JTFUnidade.getText().length() < 2) {
-            throw new Mensagem("Unidade deve conter ao menos 2 caracteres.");
+        if (this.JTFUnidade.getText().length() < 1) {
+            throw new Mensagem("Unidade deve conter ao menos 1 caracteres.");
         } else {
             unidade = this.JTFUnidade.getText();
         }
@@ -323,7 +324,6 @@ public class FrmGerenciarProduto extends javax.swing.JFrame {
             this.JTFQuantidadeMaxima.setText("");
             this.JTFCategoria.setText("");
             JOptionPane.showMessageDialog(null, "Produto Alterada com Sucesso!");
-
         }
         // Exibe no console o produto cadastrado
         System.out.println(this.objetoproduto.getMinhaLista().toString());

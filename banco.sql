@@ -27,6 +27,12 @@ CREATE TABLE movimentacao(
     FOREIGN KEY (idProduto) REFERENCES produtos(idProduto)
 );
 
+--Selecionar e testar as tabelas
 select * from categoria;
 select * from produtos;      
 select * from movimentacao;
+
+--Dropar as tabelas em caso de erro
+drop table categoria;
+drop table produtos;
+drop table movimentacao;
