@@ -204,68 +204,62 @@ public class FrmMovimentacao extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRegistrarActionPerformed
-        try {
-            String nomeProduto = JTFNome.getText().trim();
-            if (nomeProduto.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Por favor, informe o nome do produto");
-                return;
-            }
-
-            String tipoStr = JTFTipo.getText().trim().toUpperCase();
-            if (!tipoStr.equals("ENTRADA") && !tipoStr.equals("SAIDA")) {
-                JOptionPane.showMessageDialog(this, "Tipo deve ser 'ENTRADA' ou 'SAIDA'");
-                return;
-            }
-
-            int quantidade;
-            try {
-                quantidade = Integer.parseInt(JTFQuantidade.getText().trim());
-                if (quantidade <= 0) {
-                    JOptionPane.showMessageDialog(this, "Quantidade deve ser maior que zero");
-                    return;
-                }
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Por favor, informe uma quantidade válida");
-                return;
-            }
-
-            // Busca um produto pelo nome
-            Produto prod = buscarProdutoPorNome(nomeProduto);
-            if (prod == null) {
-                JOptionPane.showMessageDialog(this, "Produto não encontrado: " + nomeProduto);
-                return;
-            }
-
-            // Cria uma movimentação
-            Movimentacao movimentacao = new Movimentacao();
-            movimentacao.setData(LocalDateTime.now());
-            movimentacao.setTipo(tipoStr);
-            movimentacao.setQuantidade(quantidade);
-            movimentacao.setIdProduto(prod.getIdProduto());
-
-            // Registra a movimentação
-            String alerta = movimentacaoDAO.registrarMovimentacao(movimentacao);
-
-            String mensagem = "Movimentação registrada com sucesso!";
-            if (alerta != null) {
-                mensagem += "\n\n" + alerta;
-            }
-            JOptionPane.showMessageDialog(this, mensagem);
-
-            // Limpa os campos
-            JTFNome.setText("");
-            JTFTipo.setText("");
-            JTFQuantidade.setText("");
-            JTFData.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-
-            // Recarrega a tabela
-            carregarTabela();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Erro ao registrar movimentação: " + ex.getMessage());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Erro inesperado: " + ex.getMessage());
+      
+try {
+        String nomeProduto = JTFNome.getText().trim();
+        if (nomeProduto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, informe o nome do produto");
+            return;
         }
+
+        String tipoStr = JTFTipo.getText().trim().toUpperCase();
+        if (!tipoStr.equals("ENTRADA") && !tipoStr.equals("SAIDA")) {
+            JOptionPane.showMessageDialog(this, "Tipo deve ser 'ENTRADA' ou 'SAIDA'");
+            return;
+        }
+
+        int quantidade;
+        try {
+            quantidade = Integer.parseInt(JTFQuantidade.getText().trim());
+            if (quantidade <= 0) {
+                JOptionPane.showMessageDialog(this, "Quantidade deve ser maior que zero");
+                return;
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Por favor, informe uma quantidade válida");
+            return;
+        }
+
+        // Cria a movimentação com os dados básicos (sem ID do produto)
+        Movimentacao movimentacao = new Movimentacao();
+        movimentacao.setData(LocalDateTime.now());
+        movimentacao.setTipo(tipoStr);
+        movimentacao.setQuantidade(quantidade);
+
+        // Envia o nome do produto diretamente
+        String alerta = movimentacaoDAO.registrarMovimentacaoPorNome(nomeProduto, movimentacao);
+
+        String mensagem = "Movimentação registrada com sucesso!";
+        if (alerta != null) {
+            mensagem += "\n\n" + alerta;
+        }
+        JOptionPane.showMessageDialog(this, mensagem);
+
+        // Limpa os campos
+        JTFNome.setText("");
+        JTFTipo.setText("");
+        JTFQuantidade.setText("");
+        JTFData.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Atualiza tabela
+        carregarTabela();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Erro ao registrar movimentação: " + ex.getMessage());
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Erro inesperado: " + ex.getMessage());
+    }
+
     }//GEN-LAST:event_JBRegistrarActionPerformed
 
     /**

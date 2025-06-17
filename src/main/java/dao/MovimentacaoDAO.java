@@ -175,6 +175,91 @@ public class MovimentacaoDAO {
         }
         return movimentacoes;
     }
+    
+    public String registrarMovimentacaoPorNome(String nomeProduto, Movimentacao movimentacao) throws SQLException {
+    String mensagemAlerta = null;
+    Connection conn = null;
+    boolean autoCommitOriginal = true;
+
+    try {
+        conn = (this.conexao != null) ? this.conexao : ConexaoDAO.getConnection();
+        autoCommitOriginal = conn.getAutoCommit();
+        conn.setAutoCommit(false);
+
+        // Busca direta pelo nome
+        Produto produto = null;
+        String sqlBusca = "SELECT * FROM produtos WHERE TRIM(LOWER(nome)) = TRIM(LOWER(?))";
+        try (PreparedStatement stmt = conn.prepareStatement(sqlBusca)) {
+            stmt.setString(1, nomeProduto);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    produto = new Produto();
+                    produto.setIdProduto(rs.getInt("idProduto"));
+                    produto.setNome(rs.getString("nome"));
+                    produto.setPrecoUnitario(rs.getDouble("precoUnitario"));
+                    produto.setUnidade(rs.getString("unidade"));
+                    produto.setQuantidadeEstoque(rs.getInt("quantidadeEstoque"));
+                    produto.setQuantidadeMinima(rs.getInt("quantidadeMinima"));
+                    produto.setQuantidadeMaxima(rs.getInt("quantidadeMaxima"));
+                    produto.setCategoria(rs.getString("categoria"));
+                }
+            }
+        }
+
+        if (produto == null) {
+            throw new SQLException("Produto não encontrado!");
+        }
+
+        int novaQuantidade = produto.getQuantidadeEstoque();
+        String tipo = movimentacao.getTipo().toUpperCase();
+
+        if (tipo.equals("ENTRADA")) {
+            novaQuantidade += movimentacao.getQuantidade();
+        } else if (tipo.equals("SAIDA")) {
+            novaQuantidade -= movimentacao.getQuantidade();
+            if (novaQuantidade < 0) {
+                throw new SQLException("Quantidade insuficiente em estoque!");
+            }
+
+            if (novaQuantidade < produto.getQuantidadeMinima()) {
+                mensagemAlerta = "ALERTA: Estoque abaixo do mínimo!\n";
+            }
+        } else {
+            throw new SQLException("Tipo de movimentação inválido! Use 'ENTRADA' ou 'SAIDA'");
+        }
+
+        if (tipo.equals("ENTRADA") && novaQuantidade > produto.getQuantidadeMaxima()) {
+            mensagemAlerta = "ALERTA: Estoque acima do máximo!\n";
+        }
+
+        // Atualiza o estoque
+        produto.setQuantidadeEstoque(novaQuantidade);
+        atualizarProduto(produto, conn);
+
+        // Registra movimentação
+        String sqlInsert = "INSERT INTO movimentacao (data, tipo, quantidade, idProduto) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sqlInsert)) {
+            stmt.setObject(1, movimentacao.getData());
+            stmt.setString(2, tipo);
+            stmt.setInt(3, movimentacao.getQuantidade());
+            stmt.setInt(4, produto.getIdProduto());
+            stmt.executeUpdate();
+        }
+
+        conn.commit();
+        return mensagemAlerta;
+
+    } catch (SQLException e) {
+        if (conn != null) conn.rollback();
+        throw e;
+    } finally {
+        if (conn != null) {
+            conn.setAutoCommit(autoCommitOriginal);
+            if (this.conexao == null) conn.close();
+        }
+    }
+}
+
 }
 
 

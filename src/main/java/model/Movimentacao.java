@@ -52,7 +52,8 @@ public class Movimentacao {
         return idProduto;
     }
 
-    public void setIdProduto(int id_produto) {
-        this.idProduto = idProduto;
-    }
+   public void setIdProduto(int id_produto) {
+    this.idProduto = id_produto;
+}
+
 }

@@ -144,6 +144,33 @@ public class ProdutoDAO {
                     
             stmt.setInt(1, idProduto);
             stmt.executeUpdate();
-        }    
+        }
+ 
+        }
+      public Produto buscarPorNome(String nome) throws SQLException {
+       String sql = "SELECT * FROM produtos WHERE TRIM(LOWER(nome)) = TRIM(LOWER(?))";
+
+    try (Connection conn = ConexaoDAO.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, nome);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            Produto p = new Produto();
+            p.setIdProduto(rs.getInt("idProduto"));
+            p.setNome(rs.getString("nome"));
+            p.setPrecoUnitario(rs.getDouble("precoUnitario"));
+            p.setUnidade(rs.getString("unidade"));
+            p.setQuantidadeEstoque(rs.getInt("quantidadeEstoque"));
+            p.setQuantidadeMinima(rs.getInt("quantidadeMinima"));
+            p.setQuantidadeMaxima(rs.getInt("quantidadeMaxima"));
+            return p;
+        }
     }
+
+    return null;
 }
+
+    }
+
