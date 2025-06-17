@@ -15,6 +15,7 @@ public class FrmRelatorioAbaixoMin extends javax.swing.JFrame {
     
     public FrmRelatorioAbaixoMin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     

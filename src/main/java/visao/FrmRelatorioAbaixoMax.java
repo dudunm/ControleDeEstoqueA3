@@ -16,6 +16,7 @@ public class FrmRelatorioAbaixoMax extends javax.swing.JFrame {
      */
     public FrmRelatorioAbaixoMax() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     
