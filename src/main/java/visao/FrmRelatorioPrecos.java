@@ -1,8 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package visao;
+import dao.ProdutoDAO;
+import model.Produto;
+import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +20,7 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
      */
     public FrmRelatorioPrecos() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -28,8 +32,26 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        fechar = new javax.swing.JButton();
+        JBFechar = new javax.swing.JButton();
+        JBGerar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JTListaPrecos = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Preços");
@@ -38,42 +60,128 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
         jLabel1.setText("Lista de Preços");
         jLabel1.setToolTipText("");
 
-        fechar.setText("Fechar");
-        fechar.addActionListener(new java.awt.event.ActionListener() {
+        JBFechar.setText("Fechar");
+        JBFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fecharActionPerformed(evt);
+                JBFecharActionPerformed(evt);
             }
         });
+
+        JBGerar.setText("Gerar");
+        JBGerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBGerarActionPerformed(evt);
+            }
+        });
+
+        JTListaPrecos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "PRODUTO", "PREÇO", "UNIDADE", "CATEGORIA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(JTListaPrecos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(122, 122, 122))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(fechar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(JBGerar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JBFechar)
+                .addGap(39, 39, 39))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(213, 213, 213))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
-                .addComponent(fechar)
-                .addContainerGap())
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBFechar)
+                    .addComponent(JBGerar))
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
+    private void JBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBFecharActionPerformed
         this.dispose();
-    }//GEN-LAST:event_fecharActionPerformed
+    }//GEN-LAST:event_JBFecharActionPerformed
+
+    private void JBGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerarActionPerformed
+ DefaultTableModel modelo = (DefaultTableModel) JTListaPrecos.getModel();
+        modelo.setNumRows(0);
+        
+        ProdutoDAO dao = new ProdutoDAO();
+        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        
+        try {
+            List<Produto> listaProdutos = dao.listarProdutosOrdemAlfabetica();
+            
+            for (Produto produto : listaProdutos) {
+                modelo.addRow(new Object[]{
+                    produto.getIdProduto(),
+                    produto.getNome(),
+                    formatoMoeda.format(produto.getPrecoUnitario()),
+                    produto.getUnidade(),
+                    produto.getCategoria() != null ? produto.getCategoria() : "Sem categoria"
+                });
+            }
+            
+            if (listaProdutos.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Nenhum produto encontrado no estoque.", 
+                    "Informação", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Relatório gerado com sucesso! Total de produtos: " + listaProdutos.size(), 
+                    "Sucesso", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } catch (SQLException ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Erro ao gerar relatório de preços", ex);
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Erro ao carregar os dados: " + ex.getMessage(), 
+                "Erro", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            logger.log(java.util.logging.Level.SEVERE, "Erro inesperado ao gerar relatório", ex);
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Erro inesperado: " + ex.getMessage(), 
+                "Erro", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JBGerarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,8 +200,7 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
+            logger.log(java.util.logging.Level.SEVERE, null, ex);}
         //</editor-fold>
 
         /* Create and display the form */
@@ -101,7 +208,12 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton fechar;
+    private javax.swing.JButton JBFechar;
+    private javax.swing.JButton JBGerar;
+    private javax.swing.JTable JTListaPrecos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

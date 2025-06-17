@@ -315,6 +315,32 @@ public class ProdutoDAO {
            }
            return lista;
        }
+       
+    public List<Produto> listarProdutosOrdemAlfabetica() throws SQLException {
+        List<Produto> produtos = new ArrayList<>();
+        String sql = "SELECT * FROM produtos ORDER BY nome ASC";
+
+        try (Connection conn = ConexaoDAO.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Produto produto = new Produto();
+                produto.setIdProduto(rs.getInt("idProduto"));
+                produto.setNome(rs.getString("nome"));
+                produto.setPrecoUnitario(rs.getDouble("precoUnitario"));
+                produto.setQuantidadeEstoque(rs.getInt("quantidadeEstoque"));
+                produto.setQuantidadeMinima(rs.getInt("quantidadeMinima"));
+                produto.setQuantidadeMaxima(rs.getInt("quantidadeMaxima"));
+                produto.setUnidade(rs.getString("unidade"));
+                produto.setCategoria(rs.getString("categoria"));
+
+                produtos.add(produto);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao listar produtos em ordem alfabética: " + e.getMessage());
+            throw e;
+        }
+        return produtos;
+    }
            
       
 }
