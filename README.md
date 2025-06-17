@@ -85,3 +85,4 @@ RNF05. Disponibilidade
  - MySQL server 17.6 GA
  - SQL Workbench 8.0.42
  - IDE Apache NetBeans 26
+ - JDBC Driver 9.3.0
