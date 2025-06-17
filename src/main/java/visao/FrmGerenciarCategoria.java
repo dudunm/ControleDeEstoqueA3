@@ -57,7 +57,7 @@ public class FrmGerenciarCategoria extends javax.swing.JFrame {
         JLNomeUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JLNomeUser.setText("Nome:");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JTCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

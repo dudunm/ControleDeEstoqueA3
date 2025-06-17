@@ -34,7 +34,7 @@ public class FrmCadastrarCategoria extends javax.swing.JFrame {
         JBCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         JBCadastrar.setText("Cadastrar");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Categorias");
 
         JLNomeProd1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

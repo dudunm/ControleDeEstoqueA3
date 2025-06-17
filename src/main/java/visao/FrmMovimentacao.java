@@ -90,7 +90,7 @@ public class FrmMovimentacao extends javax.swing.JFrame {
         JBCancelar = new javax.swing.JButton();
         JBRegistrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Movimentação");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

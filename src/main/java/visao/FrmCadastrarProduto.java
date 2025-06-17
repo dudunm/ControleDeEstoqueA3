@@ -45,7 +45,7 @@ public class FrmCadastrarProduto extends javax.swing.JFrame {
         JLQuantidade2 = new javax.swing.JLabel();
         JTFQuantidadeMax = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Produto");
 
         JLQuantidade.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
