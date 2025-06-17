@@ -1,3 +1,8 @@
+/**
+ * Classe responsável por operar os dados para a entidade Movimentacao.
+ * Gerencia o registro e consulta de movimentações de estoque.
+ */
+
 package dao;
 
 import model.Movimentacao;
@@ -26,6 +31,13 @@ public class MovimentacaoDAO {
     public MovimentacaoDAO() {
         new ProdutoDAO();
     }
+    
+    /**
+     * Registra uma nova movimentação no estoque.
+     * @param movimentacao Objeto Movimentacao contendo os dados da movimentação.
+     * @return Mensagem de alerta caso haja estoque mínimo/máximo atingido, ou null.
+     * @throws SQLException em caso de erro no registro.
+     */
 
     public String registrarMovimentacao(Movimentacao movimentacao) throws SQLException {
         String mensagemAlerta = null;
@@ -42,6 +54,7 @@ public class MovimentacaoDAO {
                 throw new SQLException("Produto não encontrado!");
             }
 
+            // Verificar estoque mínimo.
             int novaQuantidade = produto.getQuantidadeEstoque();
             String tipo = movimentacao.getTipo().toUpperCase();
 
@@ -53,7 +66,7 @@ public class MovimentacaoDAO {
                     throw new SQLException("Quantidade insuficiente em estoque!");
                 }
 
-                // Verificar estoque mínimo
+                // Verificar estoque mínimo.
                 if (novaQuantidade < produto.getQuantidadeMinima()) {
                     mensagemAlerta = "ALERTA: Estoque abaixo do mínimo!\n";
                 }
@@ -61,16 +74,16 @@ public class MovimentacaoDAO {
                 throw new SQLException("Tipo de movimentação inválido! Use 'ENTRADA' ou 'SAIDA'");
             }
 
-            // Verifica quantidade máxima
+            // Verifica quantidade máxima.
             if (tipo.equals("ENTRADA") && novaQuantidade > produto.getQuantidadeMaxima()) {
                 mensagemAlerta = "ALERTA: Estoque acima do máximo!\n";
             }
 
-            // Atualiza o produto
+            // Atualiza o produto.
             produto.setQuantidadeEstoque(novaQuantidade);
             atualizarProduto(produto, conn);
 
-            // Registra a movimentação
+            // Registra a movimentação.
             String sql = "INSERT INTO movimentacao (data, tipo, quantidade, idProduto) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -98,12 +111,20 @@ public class MovimentacaoDAO {
                         conn.close();
                     }
                 } catch (SQLException e) {
-                    // Logar erro se necessário
+                    // Logar erro se necessário.
                 }
             }
         }
     }
 
+    /**
+     * Busca um produto pelo ID no banco de dados.
+     * @param idProduto ID do produto a ser buscado.
+     * @param conn Conexão com o banco de dados.
+     * @return Objeto Produto encontrado ou null se não existir.
+     * @throws SQLException em caso de erro na consulta.
+     */
+    
     private Produto buscarProdutoPorId(int idProduto, Connection conn) throws SQLException {
         String sql = "SELECT * FROM produtos WHERE idProduto = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -125,6 +146,13 @@ public class MovimentacaoDAO {
         }
         return null;
     }
+    
+    /**
+     * Atualiza os dados de um produto no banco de dados.
+     * @param produto Objeto Produto com os dados atualizados.
+     * @param conn Conexão com o banco de dados.
+     * @throws SQLException em caso de erro na atualização.
+     */
 
     private void atualizarProduto(Produto produto, Connection conn) throws SQLException {
         String sql = "UPDATE produtos SET quantidadeEstoque = ? WHERE idProduto = ?";
@@ -135,6 +163,13 @@ public class MovimentacaoDAO {
         }
     }
 
+    /**
+     * Lista todas as movimentações de um produto específico.
+     * @param idProduto ID do produto para filtrar as movimentações.
+     * @return Lista de movimentações do produto, ordenadas por data.
+     * @throws SQLException em caso de erro na consulta.
+     */
+    
     public List<Movimentacao> listarPorProduto(int idProduto) throws SQLException {
         String sql = "SELECT * FROM movimentacao WHERE idProduto = ? ORDER BY data DESC";
         List<Movimentacao> movimentacoes = new ArrayList<>();
@@ -157,6 +192,12 @@ public class MovimentacaoDAO {
         return movimentacoes;
     }
 
+    /**
+     * Lista todas as movimentações registradas no sistema.
+     * @return Lista de todas as movimentações, ordenadas por data.
+     * @throws SQLException em caso de erro na consulta.
+     */
+    
     public List<Movimentacao> listarTodas() throws SQLException {
         String sql = "SELECT * FROM movimentacao ORDER BY data DESC";
         List<Movimentacao> movimentacoes = new ArrayList<>();
@@ -176,6 +217,14 @@ public class MovimentacaoDAO {
         return movimentacoes;
     }
     
+    /**
+     * Registra uma movimentação usando o nome do produto em vez do ID.
+     * @param nomeProduto Nome do produto a ser movimentado.
+     * @param movimentacao Objeto Movimentacao com os dados da movimentação.
+     * @return Mensagem de alerta caso haja estoque mínimo/máximo atingido, ou null.
+     * @throws SQLException em caso de erro no registro.
+     */
+    
     public String registrarMovimentacaoPorNome(String nomeProduto, Movimentacao movimentacao) throws SQLException {
     String mensagemAlerta = null;
     Connection conn = null;
@@ -186,7 +235,7 @@ public class MovimentacaoDAO {
         autoCommitOriginal = conn.getAutoCommit();
         conn.setAutoCommit(false);
 
-        // Busca direta pelo nome
+        // Busca direta pelo nome.
         Produto produto = null;
         String sqlBusca = "SELECT * FROM produtos WHERE TRIM(LOWER(nome)) = TRIM(LOWER(?))";
         try (PreparedStatement stmt = conn.prepareStatement(sqlBusca)) {
@@ -232,11 +281,11 @@ public class MovimentacaoDAO {
             mensagemAlerta = "ALERTA: Estoque acima do máximo!\n";
         }
 
-        // Atualiza o estoque
+        // Atualiza o estoque.
         produto.setQuantidadeEstoque(novaQuantidade);
         atualizarProduto(produto, conn);
 
-        // Registra movimentação
+        // Registra movimentação.
         String sqlInsert = "INSERT INTO movimentacao (data, tipo, quantidade, idProduto) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sqlInsert)) {
             stmt.setObject(1, movimentacao.getData());

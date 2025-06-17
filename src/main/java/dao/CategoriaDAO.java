@@ -1,3 +1,7 @@
+    /**
+     * Classe responsável por operar os dados para a entidade Categoria.
+     */
+
 package dao;
 
 import java.sql.Connection;
@@ -14,6 +18,12 @@ public class CategoriaDAO {
     
     public CategoriaDAO(){}
     
+    /**
+     * Obtém o maior ID de categoria cadastrado no banco de dados.
+     * @return o maior ID encontrado.
+     * @throws SQLException caso de erro na consulta no banco de dados.
+     */
+    
     public int pegarMaiorID() throws SQLException{
         int maior = 0;
         try{
@@ -28,6 +38,11 @@ public class CategoriaDAO {
         } catch(SQLException ex){
         } return maior;
     }
+    
+    /**
+     * Obtém todas as categorias cadastradas no banco de dados.
+     * @return ArrayList contendo todas as categorias.
+     */
     
     public ArrayList getMinhaLista() {
         MinhaLista.clear();
@@ -49,10 +64,16 @@ public class CategoriaDAO {
             }
 
         } catch (SQLException ex) {
-            //caso de erro
+            // Caso de erro.
         }
         return MinhaLista;
     }
+    
+    /**
+     * Insere uma nova categoria no banco de dados.
+     * @param c Objeto Categoria a ser inserido.
+     * @throws SQLException caso de erro na inserção.
+     */
 
     public void create(Categoria c) throws SQLException {
         String sql = "INSERT INTO categoria (idCategoria, nome, tamanho, embalagem) " + "VALUES (DEFAULT, ?, ?, ?)";
@@ -64,6 +85,11 @@ public class CategoriaDAO {
             stmt.executeUpdate();
         }
     }
+    
+    /**
+     * Obtém os nomes de todas as categorias cadastradas.
+     * @return ArrayList contendo objetos categoria com apenas os nomes preenchidos.
+     */
     
     public ArrayList<Categoria> getNomesCategorias() {
         ArrayList<Categoria> nomes = new ArrayList<>();
@@ -86,6 +112,12 @@ public class CategoriaDAO {
         return nomes;
     }
     
+    /**
+     * Atualiza uma categoria existente no banco de dados.
+     * @param c Objeto Categoria com os dados atualizados.
+     * @throws SQLException em caso de erro na atualização.
+     */
+    
     public void update(Categoria c) throws SQLException {
             
             String sql = "UPDATE categoria SET nome=?, tamanho=?, embalagem=? WHERE idCategoria=?";
@@ -100,7 +132,13 @@ public class CategoriaDAO {
             stmt.executeUpdate();  
             }
         }
-        
+    
+    /**
+    * Remove uma categoria do banco de dados.
+    * @param idCategoria ID da categoria a ser removida.
+    * @throws SQLException em caso de erro na remoção.
+    */
+
         public void delete(int idCategoria) throws SQLException {
             String sql = "DELETE FROM categoria WHERE idCategoria=?";
             try (Connection conn = ConexaoDAO.getConnection();

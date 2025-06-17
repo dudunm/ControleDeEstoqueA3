@@ -1,3 +1,8 @@
+    /**
+     * Classe responsável pelas operações de acesso a dados para a entidade Produto.
+     * Realiza operações CRUD (Create, Read, Update, Delete) no banco de dados.
+     */
+
 package dao;
 
 import model.Produto;
@@ -28,6 +33,12 @@ public class ProdutoDAO {
         } return maior;
     }
 
+    /**
+     * Obtém o maior ID de produto cadastrado no banco de dados.
+     * @return O maior ID encontrado.
+     * @throws SQLException em caso de erro na consulta no banco de dados.
+     */
+    
     public Produto buscarPorId(int idProduto) throws SQLException {
         String sql = "SELECT * FROM produtos WHERE idProduto = ?";
         try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -49,6 +60,11 @@ public class ProdutoDAO {
         }
         return null;
     }
+    
+    /**
+     * Obtém todos os produtos cadastrados no banco de dados.
+     * @return ArrayList contendo todos os produtos.
+     */
     
     public ArrayList getMinhaLista() {
         MinhaLista.clear();
@@ -75,10 +91,16 @@ public class ProdutoDAO {
             }
 
         } catch (SQLException ex) {
-            //caso de erro
+            // Caso de erro.
         }
         return MinhaLista;
     }
+    
+    /**
+     * Insere um novo produto no banco de dados.
+     * @param p Objeto Produto a ser inserido.
+     * @throws SQLException em caso de erro na inserção.
+     */
 
     public void create(Produto p) throws SQLException {
         String sql = "INSERT INTO produtos (idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria ) " + "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
@@ -94,6 +116,12 @@ public class ProdutoDAO {
             stmt.executeUpdate();
         }
     }
+    
+    /**
+     * Obtém todos os produtos cadastrados no banco de dados.
+     * @return Lista de todos os produtos.
+     * @throws SQLException em caso de erro na consulta.
+     */
 
     public List<Produto> readAll() throws SQLException {
         List<Produto> lista = new ArrayList<>();
@@ -119,6 +147,13 @@ public class ProdutoDAO {
         }
         return lista;
     }
+    
+    /**
+     * Atualiza um produto existente no banco de dados.
+     * @param p Objeto Produto com os dados atualizados.
+     * @throws SQLException em caso de erro na atualização.
+     */
+    
     public void update(Produto p) throws SQLException {
             
             String sql = "UPDATE produtos SET nome=?, precoUnitario=?, unidade=?, quantidadeEstoque=?, quantidadeMinima=?, quantidadeMaxima=?, categoria=? WHERE idProduto=?";
@@ -137,6 +172,12 @@ public class ProdutoDAO {
             stmt.executeUpdate();  
             }
         }
+    
+    /**
+     * Remove um produto do banco de dados.
+     * @param idProduto ID do produto a ser removido.
+     * @throws SQLException em caso de erro na remoção.
+     */
         
         public void delete(int idProduto) throws SQLException {
             String sql = "DELETE FROM produtos WHERE idProduto=?";
@@ -148,6 +189,14 @@ public class ProdutoDAO {
         }
  
         }
+        
+    /**
+     * Busca um produto pelo nome no banco de dados.
+     * @param nome Nome do produto a ser buscado.
+     * @return Objeto Produto encontrado ou null se não existir.
+     * @throws SQLException em caso de erro na consulta.
+     */
+        
       public Produto buscarPorNome(String nome) throws SQLException {
        String sql = "SELECT * FROM produtos WHERE TRIM(LOWER(nome)) = TRIM(LOWER(?))";
 
@@ -172,7 +221,13 @@ public class ProdutoDAO {
 
     return null;
 }
-       
+       /**
+       * Mapeia os dados de um ResultSet para um objeto Produto.
+       * @param rs ResultSet contendo os dados do produto.
+       * @return Objeto Produto preenchido.
+       * @throws SQLException em caso de erro no mapeamento.
+       */
+      
       private Produto mapearProduto(ResultSet rs) throws SQLException {
            Produto p = new Produto();
            p.setIdProduto (rs.getInt("idproduto"));
@@ -188,6 +243,11 @@ public class ProdutoDAO {
            }
            return p;  
        }
+      
+    /**
+     * Lista todos os produtos com estoque abaixo da quantidade mínima.
+     * @return Lista de produtos com estoque abaixo do mínimo.
+     */
        
        public List<Produto>listEstoqueAbaixoMinimo(){
            List<Produto> produtos = new ArrayList<>();
@@ -208,6 +268,11 @@ public class ProdutoDAO {
            return produtos;
        }
        
+    /**
+     * Lista todos os produtos com estoque acima da quantidade máxima.
+     * @return Lista de produtos com estoque acima do máximo.
+     */
+       
        public List<Produto>listEstoqueAcimaMaximo(){
            List<Produto> produtos = new ArrayList<>();
            String sql = "SELECT * FROM produtos Where quantidadeEstoque > quantidadeMaxima";
@@ -225,6 +290,11 @@ public class ProdutoDAO {
         }
            return produtos;
        }
+       
+    /**
+     * Lista a quantidade de produtos por categoria.
+     * @return Lista de arrays de strings, onde o array contém o nome da categoria e a quantidade de produtos.
+     */
        
        public List<String[]> listarQuantidadeProdPorCategoria(){
            List<String[]> lista = new ArrayList<>();

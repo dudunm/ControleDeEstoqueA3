@@ -1,3 +1,8 @@
+    /**
+     * Classe que representa a entidade Produto no sistema.
+     * Contém os atributos e métodos relacionados aos produtos do estoque.
+     */
+
 package model;
 
 import java.sql.SQLException;
@@ -5,7 +10,7 @@ import java.util.ArrayList;
 import dao.ProdutoDAO;
 public class Produto {
     
-    // atributos da classe produto
+    // Atributos da classe produto.
     
     private int idProduto;
     private String nome;
@@ -17,6 +22,19 @@ public class Produto {
     private String categoria;
     
     private final ProdutoDAO dao;
+    
+    /**
+     * Construtor com parâmetros.
+     * @param idProduto ID do produto.
+     * @param nome Nome do produto.
+     * @param precoUnitario Preço unitário do produto.
+     * @param unidade Unidade de medida do produto.
+     * @param quantidadeEstoque Quantidade atual em estoque.
+     * @param quantidadeMinima Quantidade mínima em estoque.
+     * @param quantidadeMaxima Quantidade máxima em estoque.
+     * @param categoria Categoria do produto.
+     */
+    
     public Produto(int idProduto, String nome, double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) {
         this.dao = new ProdutoDAO();
         this.idProduto = idProduto;
@@ -30,12 +48,16 @@ public class Produto {
 
     }
     
+    /**
+     * Construtor padrão que inicializa o DAO.
+     */
+    
      public Produto() {
          
          this.dao = new ProdutoDAO();
      }
 
-    // Aqui os getters e setters
+    // Getters e setters.
 
      public int getIdProduto() {
          return idProduto;
@@ -100,6 +122,8 @@ public class Produto {
         this.categoria = categoria;
     }
     
+    // Fim dos getters e setters.
+    
      /**
      * Deleta uma categoria especÍfica pelo seu ID.
      *
@@ -130,13 +154,38 @@ public class Produto {
         return true;
     }
     
+    /**
+     * Obtém o maior ID de produto cadastrado no banco de dados.
+     * @return O maior ID encontrado.
+     * @throws SQLException Em caso de erro na consulta.
+     */
+    
      public int maiorID() throws SQLException{
         return dao.pegarMaiorID();
     }
     
+    /**
+     * Obtém todos os produtos cadastrados no banco de dados.
+     * @return Lista de todos os produtos.
+     */
+     
     public ArrayList<Produto> getMinhaLista() {
         return dao.getMinhaLista();
     }
+    
+    /**
+     * Insere um novo produto no banco de dados.
+     * @param nome Nome do novo produto.
+     * @param precoUnitario Preço unitário do novo produto.
+     * @param unidade Unidade de medida do novo produto.
+     * @param quantidadeEstoque Quantidade inicial em estoque.
+     * @param quantidadeMinima Quantidade mínima em estoque.
+     * @param quantidadeMaxima Quantidade máxima em estoque.
+     * @param categoria Categoria do novo produto.
+     * @return true se a inserção foi bem-sucedida.
+     * @throws SQLException em caso de erro na inserção.
+     */
+    
     public boolean insertProduto(String nome, Double precoUnitario, String unidade, int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) throws SQLException{
         int idProduto = this.maiorID()+1;
         Produto objeto = new Produto(idProduto, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMinima, quantidadeMaxima, categoria);
