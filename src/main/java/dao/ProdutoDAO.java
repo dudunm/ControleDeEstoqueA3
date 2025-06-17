@@ -4,6 +4,7 @@ import model.Produto;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Categoria;
 
 public class ProdutoDAO {
 
@@ -171,6 +172,60 @@ public class ProdutoDAO {
 
     return null;
 }
-
-    }
+       
+      private Produto mapearProduto(ResultSet rs) throws SQLException {
+           Produto p = new Produto();
+           p.setIdProduto (rs.getInt("idproduto"));
+           p.setNome(rs.getString("nome"));
+           p.setPrecoUnitario(rs.getDouble("precoUnitario"));
+           p.setUnidade(rs.getString("unidade"));
+           p.setQuantidadeEstoque(rs.getInt("quantidadeEstoque"));
+           p.setQuantidadeMinima(rs.getInt("quantidadeMinima"));
+           p.setQuantidadeMaxima(rs.getInt("quantidadeMaxima"));
+           
+           if (rs.getObject("idCategoria") != null){
+               p.setCategoria(rs.getString("categoria_nome"));   
+           }
+           return p;  
+       }
+       
+       public List<Produto>listEstoqueAbaixoMinimo(){
+           List<Produto> produtos = new ArrayList<>();
+           String sql = "SELECT * FROM produtos Where quantidadeEstoque < quantidadeMinima";
+           
+           try(Connection conn = ConexaoDAO.getConnection();
+               Statement stmt = conn.createStatement();
+               ResultSet rs = stmt.executeQuery(sql)){
+               
+               while(rs.next()){
+                   produtos.add(mapearProduto(rs));
+                   
+               }
+           }catch(SQLException e){
+               System.err.println("Erro ao listar estoque abaixo do minimo:" + e.getMessage());
+               
+           }
+           return produtos;
+       }
+       
+       public List<Produto>listEstoqueAcimaMaximo(){
+           List<Produto> produtos = new ArrayList<>();
+           String sql = "SELECT * FROM produtos Where quantidadeEstoque > quantidadeMaxima";
+           
+           try(Connection conn = ConexaoDAO.getConnection();
+               Statement stmt = conn.createStatement();
+               ResultSet rs = stmt.executeQuery(sql)){
+               
+               while(rs.next()){
+                   produtos.add(mapearProduto(rs));
+                   
+               }
+            }catch(SQLException e){
+               System.err.println("Erro ao listar estoque acima do maximo:" + e.getMessage());
+        }
+           return produtos;
+       }
+           
+      
+}
 
