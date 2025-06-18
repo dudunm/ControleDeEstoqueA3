@@ -3,7 +3,7 @@
      * Contém os atributos e métodos relacionados a movimentações de estoque.
      */
 
-package model;
+package modelo;
 
 import java.time.LocalDateTime;
 

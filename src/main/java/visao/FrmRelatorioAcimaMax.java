@@ -4,17 +4,17 @@ package visao;
 import dao.ProdutoDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import model.Produto;
+import modelo.Produto;
 
 
-public class FrmRelatorioAbaixoMax extends javax.swing.JFrame {
+public class FrmRelatorioAcimaMax extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmRelatorioAbaixoMax.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmRelatorioAcimaMax.class.getName());
 
     /**
      * Creates new form FrmRelatorioAbaixoMax
      */
-    public FrmRelatorioAbaixoMax() {
+    public FrmRelatorioAcimaMax() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -31,10 +31,10 @@ public class FrmRelatorioAbaixoMax extends javax.swing.JFrame {
         Gerar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Produtos abaixo da quantidade máxima");
+        setTitle("Produtos acima da quantidade máxima");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Produtos abaixo da quantidade máxima");
+        jLabel1.setText("Produtos acima da quantidade máxima");
 
         fechar.setText("Fechar");
         fechar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class FrmRelatorioAbaixoMax extends javax.swing.JFrame {
                             .addComponent(Gerar)
                             .addGap(300, 300, 300)
                             .addComponent(fechar))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,12 +109,12 @@ public class FrmRelatorioAbaixoMax extends javax.swing.JFrame {
     }//GEN-LAST:event_fecharActionPerformed
 
     private void GerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerarActionPerformed
-         DefaultTableModel modelo = (DefaultTableModel) JTQuantMax.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) JTQuantMax.getModel();
         modelo.setNumRows(0);
         ProdutoDAO dao = new ProdutoDAO();
         
         try{
-           List<Produto> produtos = dao.listEstoqueAbaixoMinimo();
+           List<Produto> produtos = dao.listEstoqueAcimaMaximo();
             for(Produto p : produtos){
                 modelo.addRow(new Object[]{
                      p.getIdProduto(),
@@ -150,7 +150,7 @@ public class FrmRelatorioAbaixoMax extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmRelatorioAbaixoMax().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new FrmRelatorioAcimaMax().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

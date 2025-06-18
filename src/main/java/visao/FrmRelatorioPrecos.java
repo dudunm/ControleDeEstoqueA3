@@ -1,6 +1,6 @@
 package visao;
 import dao.ProdutoDAO;
-import model.Produto;
+import modelo.Produto;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.List;
@@ -141,7 +141,6 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
         modelo.setNumRows(0);
         
         ProdutoDAO dao = new ProdutoDAO();
-        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
         
         try {
             List<Produto> listaProdutos = dao.listarProdutosOrdemAlfabetica();
@@ -150,7 +149,7 @@ public class FrmRelatorioPrecos extends javax.swing.JFrame {
                 modelo.addRow(new Object[]{
                     produto.getIdProduto(),
                     produto.getNome(),
-                    formatoMoeda.format(produto.getPrecoUnitario()),
+                    produto.getPrecoUnitario(),
                     produto.getUnidade(),
                     produto.getCategoria() != null ? produto.getCategoria() : "Sem categoria"
                 });

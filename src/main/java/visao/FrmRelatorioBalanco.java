@@ -1,30 +1,20 @@
-
 package visao;
 import dao.ProdutoDAO;
-import model.Produto;
+import modelo.Produto;
 import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author dudu
- */
 public class FrmRelatorioBalanco extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmRelatorioBalanco.class.getName());
 
-    /**
-     * Creates new form FrmRelatorioBalanco
-     */
     public FrmRelatorioBalanco() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
     
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,21 +86,19 @@ public class FrmRelatorioBalanco extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(190, 190, 190))
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JLValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JBGerar)
-                                .addGap(491, 491, 491)
-                                .addComponent(JBFechar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(JBGerar)
+                        .addGap(491, 491, 491)
+                        .addComponent(JBFechar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JLValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -148,60 +136,64 @@ public class FrmRelatorioBalanco extends javax.swing.JFrame {
     }//GEN-LAST:event_JBFecharActionPerformed
 
     private void JBGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerarActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) JTBalanco.getModel();
-        modelo.setNumRows(0);
-
         ProdutoDAO dao = new ProdutoDAO();
-        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-
+        
+       DefaultTableModel modelo = (DefaultTableModel) JTBalanco.getModel();
+       
+        modelo.setNumRows(0);
+        
         try {
-            List<Produto> listaProdutos = dao.listarProdutosOrdemAlfabetica();
-            double valorTotalEstoque = 0.0;
+        List<Produto> listaProdutos = dao.listarProdutosOrdemAlfabetica();
+        double valorTotalEstoque = 0.0;
 
-            for (Produto produto : listaProdutos) {
-                double valorTotalProduto = produto.getPrecoUnitario() * produto.getQuantidadeEstoque();
-                valorTotalEstoque += valorTotalProduto;
+        for (Produto produto : listaProdutos) {
+            double valorTotalProduto = produto.getPrecoUnitario() * produto.getQuantidadeEstoque();
+            valorTotalEstoque += valorTotalProduto;
 
-                modelo.addRow(new Object[]{
-                    produto.getIdProduto(),
-                    produto.getNome(),
-                    produto.getCategoria() != null ? produto.getCategoria() : "Sem categoria",
-                    produto.getQuantidadeEstoque(),
-                    formatoMoeda.format(produto.getPrecoUnitario()),
-                    formatoMoeda.format(valorTotalProduto)
-                });
-            }
-
-            // Atualiza o JLValorTotal (label designado) com o valor total do estoque
-            JLValorTotal.setText(formatoMoeda.format(valorTotalEstoque));
-
-            if (listaProdutos.isEmpty()) {
-                javax.swing.JOptionPane.showMessageDialog(this,
-                        "Nenhum produto encontrado no estoque.",
-                        "Informação",
-                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                JLValorTotal.setText("R$ 0,00");
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this,
-                        "Balanço gerado com sucesso! Total de produtos: " + listaProdutos.size()
-                        + "\nValor total do estoque: " + formatoMoeda.format(valorTotalEstoque),
-                        "Sucesso",
-                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            }
-
-        } catch (SQLException ex) {
-            logger.log(java.util.logging.Level.SEVERE, "Erro ao gerar balanço físico/financeiro", ex);
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Erro ao carregar os dados: " + ex.getMessage(),
-                    "Erro",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            logger.log(java.util.logging.Level.SEVERE, "Erro inesperado ao gerar balanço", ex);
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Erro inesperado: " + ex.getMessage(),
-                    "Erro",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            modelo.addRow(new Object[]{
+                produto.getIdProduto(),
+                produto.getNome(),
+                produto.getCategoria() != null ? produto.getCategoria() : "Sem categoria",
+                produto.getQuantidadeEstoque(),
+                produto.getPrecoUnitario(),    // Valor Double sem formatação
+                valorTotalProduto             // Valor Double sem formatação
+            });
         }
+
+        // Para o label, você pode manter a formatação ou não:
+        // Opção 1: Sem formatação
+        JLValorTotal.setText("R$ " + String.valueOf(valorTotalEstoque));
+        
+        // Opção 2: Com formatação básica (2 casas decimais)
+        // JLValorTotal.setText(String.format("R$ %.2f", valorTotalEstoque));
+
+        if (listaProdutos.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Nenhum produto encontrado no estoque.",
+                    "Informação",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            JLValorTotal.setText("R$ 0,00");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Balanço gerado com sucesso! Total de produtos: " + listaProdutos.size()
+                    + "\nValor total do estoque: R$ " + String.format("%.2f", valorTotalEstoque),
+                    "Sucesso",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    } catch (SQLException ex) {
+        logger.log(java.util.logging.Level.SEVERE, "Erro ao gerar balanço físico/financeiro", ex);
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Erro ao carregar os dados: " + ex.getMessage(),
+                "Erro",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+    } catch (Exception ex) {
+        logger.log(java.util.logging.Level.SEVERE, "Erro inesperado ao gerar balanço", ex);
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Erro inesperado: " + ex.getMessage(),
+                "Erro",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_JBGerarActionPerformed
 
     /**

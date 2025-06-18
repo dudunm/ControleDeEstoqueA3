@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Categoria;
+import modelo.Categoria;
 
 
 public class FrmGerenciarCategoria extends javax.swing.JFrame {

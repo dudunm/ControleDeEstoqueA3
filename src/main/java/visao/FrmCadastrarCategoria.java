@@ -3,7 +3,7 @@ package visao;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import model.Categoria;
+import modelo.Categoria;
 
 public class FrmCadastrarCategoria extends javax.swing.JFrame {
     

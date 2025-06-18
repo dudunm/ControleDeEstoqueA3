@@ -2,7 +2,7 @@ package visao;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import model.Produto;
+import modelo.Produto;
 
 /**
  *

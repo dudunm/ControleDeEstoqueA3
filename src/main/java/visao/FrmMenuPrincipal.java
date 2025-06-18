@@ -91,7 +91,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuRelatorios.add(jMenuAbaixoMin);
 
-        jMenuAbaixoMax.setText("Produtos abaixo da quantidade máxima");
+        jMenuAbaixoMax.setText("Produtos acima da quantidade máxima");
         jMenuAbaixoMax.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuAbaixoMaxActionPerformed(evt);
@@ -222,7 +222,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAbaixoMinActionPerformed
 
     private void jMenuAbaixoMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAbaixoMaxActionPerformed
-        FrmRelatorioAbaixoMax objeto = new FrmRelatorioAbaixoMax();
+        FrmRelatorioAcimaMax objeto = new FrmRelatorioAcimaMax();
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuAbaixoMaxActionPerformed
 

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.util.List;
-import model.Produto;
+import modelo.Produto;
 
 public class FrmRelatorioAbaixoMin extends javax.swing.JFrame {
     

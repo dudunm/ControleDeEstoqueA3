@@ -3,7 +3,7 @@
      * Contém os atributos e métodos relacionados aos produtos do estoque.
      */
 
-package model;
+package modelo;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

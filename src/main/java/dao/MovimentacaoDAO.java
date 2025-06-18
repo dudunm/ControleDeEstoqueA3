@@ -5,8 +5,8 @@
 
 package dao;
 
-import model.Movimentacao;
-import model.Produto;
+import modelo.Movimentacao;
+import modelo.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -3,7 +3,7 @@
      * Contém os atributos e métodos relacionados a categorias de produtos.
      */
 
-package model;
+package modelo;
 
 import java.sql.SQLException;
 import dao.CategoriaDAO;

@@ -5,11 +5,11 @@
 
 package dao;
 
-import model.Produto;
+import modelo.Produto;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import model.Categoria;
+import modelo.Categoria;
 
 public class ProdutoDAO {
 
@@ -298,7 +298,7 @@ public class ProdutoDAO {
        
        public List<String[]> listarQuantidadeProdPorCategoria(){
            List<String[]> lista = new ArrayList<>();
-           String sql = "SELECT categoria, COUNT(*) AS total FROM produto GROUP BY categoria ORDER BY categoria";
+           String sql = "SELECT categoria, COUNT(*) AS total FROM produtos GROUP BY categoria ORDER BY categoria";
            
            try(Connection conn = ConexaoDAO.getConnection();
                Statement stmt = conn.createStatement();
